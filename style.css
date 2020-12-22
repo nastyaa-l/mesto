@@ -1,0 +1,302 @@
+
+.page{
+    background-color: #000000;
+    padding: 45px 200px 60px;
+    box-sizing: border-box;
+    min-width: 320px;
+    width: 100%;
+}
+
+.root{
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.section{
+  max-width: 900px;
+}
+
+.header__logo{
+    max-width: 142px;
+    max-height: 33px;
+    margin-bottom: 41px;
+}
+
+.header__line{
+    width: 100%;
+    border: 1px solid #545454;
+    margin: 0;
+}
+
+.content__profile{
+  margin:30px 0 50px; /* маржин топ для пиксель перфекта*/
+}
+
+.profile{
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.profile__info{
+  display: grid;
+  grid-template-areas:
+  "name button"
+  "subscribe ." ;
+}
+
+.profile__content{
+  display: flex;
+  align-items: center;
+}
+
+.profile__avatar{
+  margin-right: 30px;
+  border-radius: 50%;
+}
+
+.profile__name{
+  margin: auto 18px auto 0;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.14;
+  color: #FFFFFF;
+  grid-area:name;
+  align-self: center;
+}
+
+.profile__subscription{
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.22;
+  color: #FFFFFF;
+  margin: 16px 0 0;
+  grid-area: subscribe;
+}
+
+.profile__edit-button{
+  width: 24px;
+  height: 24px;
+  background-color:#000000;
+  background-image: url(./image/edit.svg);
+  border:1px white solid;
+  padding:0;
+  grid-area:button;
+  align-self: flex-end;
+  transition: opacity linear;
+  opacity:1;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.profile__edit-button:hover{
+  opacity:0.6;
+  cursor: pointer;
+}
+
+
+
+.profile__add-button{
+  min-width: 150px;
+  height: 48px;
+  background-color: #000000;
+  border: 2px #FFFFFF solid;
+  background-image: url(./image/Vector+.png);
+  padding:0;
+  opacity: 1;
+  transition: opacity linear;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+
+.profile__add-button:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.elements{
+  display:grid;
+  gap:20px 17px;
+  grid-template-columns: repeat(auto-fill, 282px);
+}
+
+.element{
+  background-color:#FFFFFF;
+  height: 361px;
+  width: 282px;
+  border-radius: 10px;
+}
+
+.element__picture{
+  height: 282px;
+  width: 282px;
+  object-fit: cover;
+  object-position: 0 0;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.element__name-content{
+  display: flex;
+  margin: 25px 15px 31px 21px;
+  justify-content: space-between;
+  align-items:center;
+}
+
+.element__title{
+  margin:0;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.2;
+  color: #000000;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.element__item{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.element__like{
+ display: inline-block; /* элемент span теперь сможет принимать определённую ширину и высоту */
+  vertical-align: middle; /* элемент и текст будут правильно выровнены по вертикали. Работает в паре с inline-block */
+  min-width: 21px;
+  min-height: 19px;
+  background-image: url(./image/like.png);
+  border: 1 px black solid;
+  opacity: 1;
+  transition: opacity linear;
+}
+
+.element__like:hover{
+  opacity:0.5;
+  cursor: pointer;
+}
+
+.page__footer{
+  margin-top: 66px;
+  margin-bottom: 0;
+}
+
+.footer__copyright{
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.22;
+  color: #545454;
+  margin: 0;
+}
+
+@media screen and (min-width: 1280px){
+  .content__profile{
+    margin-left:auto;
+    margin-right: auto;
+  }
+
+  .page{
+    max-height: 1217px;
+  }
+}
+
+@media screen and (min-width: 1281px){
+  .page__header{
+    margin:0 auto;
+
+  }
+}
+
+@media screen and (min-width: 1281px){
+  .content__elements{
+    margin:0 auto;
+
+  }
+}
+
+@media screen and (min-width: 1281px){
+  .page__footer{
+    margin-left:auto;
+    margin-right: auto;
+
+  }
+}
+
+@media screen and (max-width: 1040px){
+  .page{
+    padding: 28px 0 36px;
+  }
+  .profile{
+    padding: 0 17px;
+    justify-content: center;
+  }
+
+  .footer{
+    padding: 0 17px;
+  }
+
+  .elements{
+    padding: 0 17px;
+    justify-content: center;
+  }
+  .header__logo{
+    margin-left: 27px;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .profile__content{
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .profile__content{
+    margin: 37px 0 36px 0; /* для пиксель перфекта, в макете 42рх*/
+  }
+
+  .profile{
+    flex-direction: column;
+    justify-content: center;
+  }
+  .profile__add-button{
+    width: 100%;
+    margin-top: 36px;
+  }
+  .profile__name{
+    font-size: 27px;
+    text-align: center;
+    margin: 0 10px 0 0;
+  }
+  .profile__subscription{
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    margin-top:14px;
+  }
+  .header__logo{
+    width: 103.74px;
+    height: 24.4px;
+    margin-bottom: 31px;
+}
+
+.profile__edit-button{
+  width: 18px;
+  height: 18px;
+}
+
+  .profile__avatar{
+    margin: 0 0 26px;
+  }
+
+  .page__footer{
+    margin-top: 48px;
+  }
+}
+
