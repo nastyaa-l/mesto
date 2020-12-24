@@ -1,0 +1,10 @@
+.content__profile{
+  margin:30px 0 50px; /* маржин топ для пиксель перфекта*/
+}
+
+@media screen and (min-width: 1280px){
+  .content__profile{
+    margin-left:auto;
+    margin-right: auto;
+  }
+}
