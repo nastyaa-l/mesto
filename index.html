@@ -3,14 +3,13 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./pages/index.css">
-    <link rel ="stylesheet" href="./style.css">
     <title>Mesto</title>
   </head>
     <body class="root">
       <div class="page">
         <header class="header section page__header">
           <img class="header__logo" src="./image/logo.svg" alt="Логотип сайта">
-          <hr class="header__line">
+          <hr class="line line_place_header">
         </header>
           <main class="content">
             <section class="profile section content__profile">
@@ -29,60 +28,42 @@
                 <img class="element__picture" src="./image/Алтай.jpg"alt="Алтай">
                 <div class="element__name-content">
                 <h2 class="element__title">Алтай</h2>
-                <label class="element__label" for="like">
-                  <input class="element__item" type="radio" name="button-for-like" id="like" value="like" disabled>
-                  <span class="element__like"></span>
-                </label>
+                <button class="element__like"></button>
                 </div>
               </article>
               <article class="element">
                 <img class="element__picture" src="./image/Байкал.jpg"alt="Байкал">
                 <div class="element__name-content">
                 <h2 class="element__title">Байкал</h2>
-                <label class="element__label" for="like">
-                  <input class="element__item" type="radio" name="button-for-like" id="like" value="like" disabled>
-                  <span class="element__like"></span>
-                </label>
+                <button class="element__like"></button>
               </div>
             </article>
               <article class="element">
                 <img class="element__picture" src="./image/Камчатка.jpg"alt="Камчатка">
                 <div class="element__name-content">
                 <h2 class="element__title">Камчатка</h2>
-                <label class="element__label" for="like">
-                  <input class="element__item" type="radio" name="button-for-like" id="like" value="like" disabled>
-                  <span class="element__like"></span>
-                </label>
+                <button class="element__like"></button>
               </div>
             </article>
               <article class="element">
                 <img class="element__picture" src="./image/Крачаево-Черкеск.jpg"alt="Крачаево-Черкеск">
                 <div class="element__name-content">
                 <h2 class="element__title">Крачаево-Черкеск</h2>
-                <label class="element__label" for="like">
-                  <input class="element__item" type="radio" name="button-for-like" id="like" value="like" disabled>
-                  <span class="element__like"></span>
-                </label>
+                <button class="element__like"></button>
               </div>
             </article>
               <article class="element">
                 <img class="element__picture" src="./image/Куршская коса.jpg"alt="Куршская коса">
                 <div class="element__name-content">
                   <h2 class="element__title">Куршская коса</h2>
-                  <label class="element__label" for="like">
-                    <input class="element__item" type="radio" name="button-for-like" id="like" value="like" disabled>
-                    <span class="element__like"></span>
-                  </label>
+                  <button class="element__like"></button>
                 </div>
               </article>
               <article class="element">
                 <img class="element__picture" src="./image/Якутия.jpg"alt="Якутия">
                 <div class="element__name-content">
                   <h2 class="element__title">Якутия</h2>
-                  <label class="element__label" for="like">
-                    <input class="element__item" type="radio" name="button-for-like" id="like" value="like" disabled>
-                    <span class="element__like"></span>
-                  </label>
+                  <button class="element__like"></button>
                 </div>
               </article>
             </section>
@@ -90,6 +71,19 @@
           <footer class="footer section page__footer">
               <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
           </footer>
+          <section class="overlay">
+            <div class="overlay__popup">
+              <h2 class="overlay__subscription">Редактировать профиль</h2>
+              <form class="overlay__form">
+              <input type="text" class="overlay__name">
+              <hr class="line line_place_overlay">
+              <input type="text" class="overlay__profile">
+              <hr class="line line_place_overlay">
+              <input type="button" class="overlay__submit" value="Cохранить">
+              </form>
+              <button class="overlay__button"></button>
+            </div>
+          </section>
       </div>
       <script src="./script.js"></script>
     </body>

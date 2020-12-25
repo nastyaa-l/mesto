@@ -2,7 +2,7 @@
 @import url(../fonts/fonts.css);
 @import url(../blocks/root/root.css);
 @import url(../blocks/section/section.css);
-@import url(../blocks/header/__line/header__line.css);
+@import url(../blocks/line/line.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
@@ -16,6 +16,7 @@
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__item/element__item.css);
 @import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/element/__like/_black/element__like_black.css);
 @import url(../blocks/element/__name-content/element__name-content.css);
 @import url(../blocks/element/__picture/element__picture.css);
 @import url(../blocks/element/__title/element__title.css);
@@ -26,3 +27,11 @@
 @import url(../blocks/page/__footer/page__footer.css);
 @import url(../blocks/page/__header/page__header.css);
 @import url(../blocks/footer/footer.css);
+@import url(../blocks/overlay/overlay.css);
+@import url(../blocks/overlay/__button/overlay__button.css);
+@import url(../blocks/overlay/__name/overlay__name.css);
+@import url(../blocks/overlay/__popup/overlay__popup.css);
+@import url(../blocks/overlay/__profile/overlay__profile.css);
+@import url(../blocks/overlay/__submit/overlay__submit.css);
+@import url(../blocks/overlay/__subscription/overlay__subscription.css);
+@import url(../blocks/overlay/_active/overlay_active.css);

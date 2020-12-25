@@ -1,0 +1,22 @@
+.overlay__submit{
+  color: #FFFFFF;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  margin-top: 48px;
+  background-color:#000000;
+  width:100%;
+  background-position:center;
+  height: 50px;
+  outline:none;
+  border:none;
+  opacity: 1;
+  transition: opacity linear;
+  border-radius: 2px;
+}
+
+.overlay__submit:hover{
+  opacity: 0.8;
+  cursor: pointer;
+}

@@ -1,15 +1,19 @@
 .element__like{
-  display: inline-block; /* элемент span теперь сможет принимать определённую ширину и высоту */
-   vertical-align: middle; /* элемент и текст будут правильно выровнены по вертикали. Работает в паре с inline-block */
    min-width: 21px;
    min-height: 19px;
    background-image: url(../../../image/like.png);
-   border: 1 px black solid;
+   border: none;
+   background-color: #FFFFFF;
    opacity: 1;
+   padding:0;
+   color: #FFFFFF;
    transition: opacity linear;
  }
-
+ .element__like:focus{
+   outline: none;
+ }
  .element__like:hover{
    opacity:0.5;
    cursor: pointer;
+   border:none;
  }

@@ -1,0 +1,14 @@
+.overlay__name{
+  border:none;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  margin-top: 54px;
+}
+
+@media screen and (max-width: 525px){
+  .overlay__name{
+    margin-top: 75px;
+  }
+  }
