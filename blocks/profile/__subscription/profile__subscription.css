@@ -6,6 +6,9 @@
   color: #FFFFFF;
   margin: 16px 0 0;
   grid-area: subscribe;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 768px){
