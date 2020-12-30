@@ -1,0 +1,23 @@
+.overlay__input{
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  border:none;
+  margin-top: 54px;
+  border-bottom: rgba(0,0,0, 0.2) 1px solid;
+  width: 100%;
+}
+
+.overlay__input:nth-of-type(2){
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 525px){
+  .overlay__input{
+    margin-top: 75px;
+  }
+  .overlay__input:nth-of-type(2){
+    margin-top: 30px;
+  }
+}

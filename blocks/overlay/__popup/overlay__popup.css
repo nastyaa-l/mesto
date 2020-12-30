@@ -12,5 +12,6 @@
 @media screen and (max-width: 525px){
   .overlay__popup{
     padding: 25px 22px;
+    margin: 0 19px;
   }
 }

@@ -4,6 +4,7 @@
   height: 48px;
   background-color: #000000;
   border: 2px #FFFFFF solid;
+  border-radius: 2px;
   background-image: url(../../../image/Vector+.png);
   padding:0;
   opacity: 1;

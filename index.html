@@ -9,7 +9,6 @@
       <div class="page">
         <header class="header section page__header">
           <img class="header__logo" src="./image/logo.svg" alt="Логотип сайта">
-          <hr class="line line_place_header">
         </header>
           <main class="content">
             <section class="profile section content__profile">
@@ -17,55 +16,57 @@
                 <img class="profile__avatar" src="./image/Avatar.png" alt="Аватар профиля">
                 <div class="profile__info">
                   <h1 class="profile__name">Жак-Ив Кусто</h1>
-                  <button class="profile__edit-button"></button>
+                  <button class="profile__edit-button" type="button"></button>
                   <p class="profile__subscription">Исследователь океана</p>
                 </div>
               </div>
               <button class="profile__add-button"></button>
             </section>
             <section class="elements section content__elements">
-              <article class="element">
+              <ul class="elements__items">
+              <li class="element">
                 <img class="element__picture" src="./image/Алтай.jpg"alt="Алтай">
                 <div class="element__name-content">
                 <h2 class="element__title">Алтай</h2>
-                <button class="element__like"></button>
+                <button class="element__like" type="button"></button>
                 </div>
-              </article>
-              <article class="element">
+              </li>
+              <li class="element">
                 <img class="element__picture" src="./image/Байкал.jpg"alt="Байкал">
                 <div class="element__name-content">
                 <h2 class="element__title">Байкал</h2>
                 <button class="element__like"></button>
               </div>
-            </article>
-              <article class="element">
+            </li>
+              <li class="element">
                 <img class="element__picture" src="./image/Камчатка.jpg"alt="Камчатка">
                 <div class="element__name-content">
                 <h2 class="element__title">Камчатка</h2>
                 <button class="element__like"></button>
               </div>
-            </article>
-              <article class="element">
+            </li>
+              <li class="element">
                 <img class="element__picture" src="./image/Крачаево-Черкеск.jpg"alt="Крачаево-Черкеск">
                 <div class="element__name-content">
                 <h2 class="element__title">Крачаево-Черкеск</h2>
                 <button class="element__like"></button>
               </div>
-            </article>
-              <article class="element">
+            </li>
+              <li class="element">
                 <img class="element__picture" src="./image/Куршская коса.jpg"alt="Куршская коса">
                 <div class="element__name-content">
                   <h2 class="element__title">Куршская коса</h2>
                   <button class="element__like"></button>
                 </div>
-              </article>
-              <article class="element">
+              </li>
+              <li class="element">
                 <img class="element__picture" src="./image/Якутия.jpg"alt="Якутия">
                 <div class="element__name-content">
                   <h2 class="element__title">Якутия</h2>
                   <button class="element__like"></button>
                 </div>
-              </article>
+              </li>
+            </ul>
             </section>
           </main>
           <footer class="footer section page__footer">
@@ -74,14 +75,12 @@
           <section class="overlay">
             <div class="overlay__popup">
               <h2 class="overlay__subscription">Редактировать профиль</h2>
-              <form class="overlay__form">
-              <input type="text" class="overlay__name">
-              <hr class="line line_place_overlay">
-              <input type="text" class="overlay__profile">
-              <hr class="line line_place_overlay">
-              <input type="button" class="overlay__submit" value="Cохранить">
+              <form class="overlay__form" name="form">
+              <input type="text" class="overlay__input overlay__input_form_name">
+              <input type="text" class="overlay__input overlay__input_form_subscription">
+              <button type="submit" class="overlay__submit">Сохранить</button>
               </form>
-              <button class="overlay__button"></button>
+              <button class="overlay__button" type="button"></button>
             </div>
           </section>
       </div>

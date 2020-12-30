@@ -5,9 +5,9 @@ let overlay = document.querySelector('.overlay');
 let form = overlay.querySelector('.overlay__form');
 let buttonSubmit = overlay.querySelector('.overlay__submit');
 let profileName = document.querySelector('.profile__name')
-let newName = overlay.querySelector('.overlay__name');
+let newName = overlay.querySelector('.overlay__input_form_name');
 let profileSub = document.querySelector('.profile__subscription');
-let newSub = overlay.querySelector('.overlay__profile');
+let newSub = overlay.querySelector('.overlay__input_form_subscription');
 
 for (let i=0; i<likes.length; i++){
   likes[i].addEventListener('click',function(){

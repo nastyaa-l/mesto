@@ -1,5 +1,3 @@
-@media screen and (max-width: 914px){
-  .header{
-    margin-left: 27px;
-  }
+.header{
+  border-bottom: rgba(84,84,84, 0.7) 2px solid;
 }

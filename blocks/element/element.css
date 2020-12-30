@@ -1,6 +1,5 @@
 .element{
   background-color:#FFFFFF;
-  height: 362px;
-  width: 282px;
+  max-height: 362px; /*если я полностью убираю это свойство, то у меня увеличивается размер блока до 370 :(*/
   border-radius: 10px;
 }
