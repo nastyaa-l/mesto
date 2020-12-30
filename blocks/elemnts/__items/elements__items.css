@@ -1,9 +1,6 @@
 .elements__items{
   padding:0;
   list-style-type: none;
-}
-
-.elements__items{
   display:grid;
   gap:20px 17px;
   grid-template-columns: repeat(auto-fill, 282px);
