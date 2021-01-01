@@ -6,15 +6,7 @@
   right: 0;
   display: none;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
-  padding-top: 213px;
   box-sizing:border-box;
-
-}
-
-@media screen and (max-width: 1095px){
-  .overlay{
-    padding-top:123px;
-  }
 }
