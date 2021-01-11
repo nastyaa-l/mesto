@@ -7,6 +7,8 @@ let profileName = document.querySelector('.profile__name')
 let newName = overlay.querySelector('.overlay__input_form_name');
 let profileSub = document.querySelector('.profile__subscription');
 let newSub = overlay.querySelector('.overlay__input_form_subscription');
+const likes = document.querySelectorAll('.element__like');
+
 
 
 function openPopup(){
@@ -37,8 +39,15 @@ overlay.addEventListener('click', function(event){
   }
   });
 
-/* Реализаци  работы лайков
-let likes = document.querySelectorAll('.element__like');
+
+likes.forEach(item => {
+  item.addEventListener('click', function(){
+    item.classList.toggle('element__like_black')
+  })
+})
+
+
+/*let likes = document.querySelectorAll('.element__like');
 for (let i=0; i<likes.length; i++){
   likes[i].addEventListener('click',function(){
     likes[i].classList.toggle('element__like_black');
