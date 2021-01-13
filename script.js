@@ -12,6 +12,8 @@ const likes = document.querySelectorAll('.element__like'),
       popupEdit = document.querySelector('.overlay__popup_edit-form'),
       popupAdd = document.querySelector('.overlay__popup_add-form'),
       bin = document.querySelectorAll('.element__bin');
+let elementTitle = document.querySelectorAll('.element__title'),
+    elementImage = document.querySelectorAll('.element__picture');
 
 
 
@@ -42,6 +44,43 @@ overlay.addEventListener('click', function(event){
     closePopup();
   }
   });
+
+//добавление исходных карточек
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+elementTitle.forEach((item,i) => {
+  item.textContent=initialCards[i].name;
+})
+
+elementImage.forEach((item,i) =>{
+  item.src=initialCards[i].link;
+})
 
 // лайки
 
