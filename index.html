@@ -6,7 +6,7 @@
     <title>Mesto</title>
   </head>
     <body class="root">
-      <div class="page">
+      <section class="page">
         <header class="header section page__header">
           <img class="header__logo" src="./image/logo.svg" alt="Логотип сайта">
         </header>
@@ -26,6 +26,7 @@
               <ul class="elements__items">
               <li class="element">
                 <img class="element__picture" src="./image/Алтай.jpg" alt="Алтай">
+                <button class="element__bin" type="button"></button>
                 <div class="element__name-content">
                 <h2 class="element__title">Алтай</h2>
                 <button class="element__like" type="button"></button>
@@ -33,6 +34,7 @@
               </li>
               <li class="element">
                 <img class="element__picture" src="./image/Байкал.jpg" alt="Байкал">
+                <button class="element__bin" type="button"></button>
                 <div class="element__name-content">
                 <h2 class="element__title">Байкал</h2>
                 <button class="element__like" type="button"></button>
@@ -40,6 +42,7 @@
             </li>
               <li class="element">
                 <img class="element__picture" src="./image/Камчатка.jpg" alt="Камчатка">
+                <button class="element__bin" type="button"></button>
                 <div class="element__name-content">
                 <h2 class="element__title">Камчатка</h2>
                 <button class="element__like" type="button"></button>
@@ -47,6 +50,7 @@
             </li>
               <li class="element">
                 <img class="element__picture" src="./image/Крачаево-Черкеск.jpg" alt="Крачаево-Черкеск">
+                <button class="element__bin" type="button"></button>
                 <div class="element__name-content">
                 <h2 class="element__title">Крачаево-Черкеск</h2>
                 <button class="element__like" type="button"></button>
@@ -54,6 +58,7 @@
             </li>
               <li class="element">
                 <img class="element__picture" src="./image/Куршская-коса.jpg" alt="Куршская коса">
+                <button class="element__bin" type="button"></button>
                 <div class="element__name-content">
                   <h2 class="element__title">Куршская коса</h2>
                   <button class="element__like" type="button"></button>
@@ -61,6 +66,7 @@
               </li>
               <li class="element">
                 <img class="element__picture" src="./image/Якутия.jpg" alt="Якутия">
+                <button class="element__bin" type="button"></button>
                 <div class="element__name-content">
                   <h2 class="element__title">Якутия</h2>
                   <button class="element__like" type="button"></button>
@@ -73,7 +79,7 @@
               <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
           </footer>
           <section class="overlay">
-            <div class="overlay__popup">
+            <div class="overlay__popup overlay__popup_edit-form">
               <h2 class="overlay__subscription">Редактировать профиль</h2>
               <form class="overlay__form" name="form">
               <input type="text" class="overlay__input overlay__input_form_name" name="profile-name">
@@ -82,7 +88,16 @@
               </form>
               <button class="overlay__button" type="button"></button>
             </div>
-          </section>
+            <!--<div class="overlay__popup overlay__popup_add-form">
+              <h2 class="overlay__subscription">Новое место</h2>
+              <form class="overlay__form" name="form">
+              <input type="text" class="overlay__input overlay__input_form_name" name="profile-name">
+              <input type="text" class="overlay__input overlay__input_form_subscription" name="profile-subscription">
+              <button type="submit" class="overlay__submit">Создать</button>
+              </form>
+              <button class="overlay__button" type="button"></button>
+           </div>!-->
+        </section>
       </div>
       <script src="./script.js"></script>
     </body>
