@@ -80,6 +80,7 @@ elementTitle.forEach((item,i) => {
 
 elementImage.forEach((item,i) =>{
   item.src=initialCards[i].link;
+  item.alt=initialCards[i].name;
 })
 
 // лайки
