@@ -7,7 +7,23 @@
   border-radius: 10px;
   position: relative;
   max-width: 430px;
+  display: none;
+}
 
+.overlay__popup_form-edit{
+  display: none;
+}
+
+.overlay__popup_form-edit_active{
+  display: block;
+}
+
+.overlay__popup_form-add{
+  display: none;
+}
+
+.overlay__popup_form-add_active{
+  display: block;
 }
 
 @media screen and (max-width: 525px){

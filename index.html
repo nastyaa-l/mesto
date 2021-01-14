@@ -6,7 +6,7 @@
     <title>Mesto</title>
   </head>
     <body class="root">
-      <section class="page">
+      <div class="page">
         <header class="header section page__header">
           <img class="header__logo" src="./image/logo.svg" alt="Логотип сайта">
         </header>
@@ -79,26 +79,36 @@
               <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
           </footer>
           <section class="overlay">
-            <div class="overlay__popup overlay__popup_edit-form">
+            <div class="overlay__popup overlay__popup_form-edit">
               <h2 class="overlay__subscription">Редактировать профиль</h2>
               <form class="overlay__form" name="form">
               <input type="text" class="overlay__input overlay__input_form_name" name="profile-name">
               <input type="text" class="overlay__input overlay__input_form_subscription" name="profile-subscription">
               <button type="submit" class="overlay__submit">Сохранить</button>
               </form>
-              <button class="overlay__button" type="button"></button>
+              <button class="overlay__button overlay__button_form-edit" type="button"></button>
             </div>
-            <!--<div class="overlay__popup overlay__popup_add-form">
+            <div class="overlay__popup overlay__popup_form-add">
               <h2 class="overlay__subscription">Новое место</h2>
               <form class="overlay__form" name="form">
-              <input type="text" class="overlay__input overlay__input_form_name" name="profile-name">
-              <input type="text" class="overlay__input overlay__input_form_subscription" name="profile-subscription">
-              <button type="submit" class="overlay__submit">Создать</button>
+              <input type="text" class="overlay__input overlay__input_element_name" name="element-name" placeholder="Название">
+              <input type="text" class="overlay__input overlay__input_element_link" name="element-link" placeholder="Ссылка на картинку">
+              <button type="submit" class="overlay__submit overlay__submit_form-add">Создать</button>
               </form>
-              <button class="overlay__button" type="button"></button>
-           </div>!-->
+              <button class="overlay__button overlay__button_form-add" type="button"></button>
+           </div>
         </section>
       </div>
+      <template id="element-template">
+        <li class="element">
+          <img class="element__picture">
+          <button class="element__bin" type="button"></button>
+          <div class="element__name-content">
+          <h2 class="element__title"></h2>
+          <button class="element__like" type="button"></button>
+        </div>
+      </li>
+      </template>
       <script src="./script.js"></script>
     </body>
 </html>
