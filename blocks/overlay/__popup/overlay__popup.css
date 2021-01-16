@@ -26,6 +26,38 @@
   display: block;
 }
 
+.overlay__popup_image{
+  display: none;
+  padding:0;
+  background: transparent;
+  max-width: 75vw; /* тут ширина становится больше, чем ширина изображения,
+  из-за этого уезжает крестик. Но вот это поправить у меня не получилось :( */
+}
+
+.overlay__popup_image_active{
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
+
+.overlay__content{
+  margin:0;
+}
+
+.overlay__image{
+  max-width:75vw;
+  max-height: 75vh;
+}
+
+.overlay__caption{
+margin-top: 10px;
+font-weight: normal;
+font-size: 12px;
+line-height: 15px;
+color: #FFFFFF;
+
+}
+
 @media screen and (max-width: 525px){
   .overlay__popup{
     padding: 25px 22px;

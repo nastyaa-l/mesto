@@ -16,7 +16,8 @@ const likes = document.querySelectorAll('.element__like'),
       editPopup = document.querySelector('.overlay__popup_form-edit'),
       addPopup = document.querySelector('.overlay__popup_form-add'),
       elementTemplate = document.querySelector('#element-template').content,
-      addForm = document.querySelector('.overlay__submit_form-add');
+      addForm = document.querySelector('.overlay__submit_form-add'),
+      imageCloseButton = document.querySelector('.overlay__button_image');
 
 let elementTitle = document.querySelectorAll('.element__title'),
     elementImage = document.querySelectorAll('.element__picture'),
@@ -139,10 +140,24 @@ item.parentElement.remove();
 })
 })
 
-/*let likes = document.querySelectorAll('.element__like');
-for (let i=0; i<likes.length; i++){
-  likes[i].addEventListener('click',function(){
-    likes[i].classList.toggle('element__like_black');
-  }
-    )
-};*/
+//открытие попапа  с картинкой
+
+
+
+elementImage.forEach((item, i) => {
+  item.addEventListener('click', function(){
+    overlay.classList.add('overlay_active');
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+    document.querySelector('.overlay__popup_image').classList.add('overlay__popup_image_active');
+    let overlayImage = document.querySelector('.overlay__image');
+    overlayImage.src=item.src;
+    document.querySelector('.overlay__caption').textContent=elementTitle[i].textContent;
+  })
+})
+
+function closeImage (){
+  overlay.classList.remove('overlay_active');
+  document.querySelector('.overlay__popup_image').classList.remove('overlay__popup_image_active');
+};
+
+imageCloseButton.addEventListener('click', closeImage)
