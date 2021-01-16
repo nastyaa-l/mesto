@@ -1,0 +1,5 @@
+.overlay__popup_image_active{
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
