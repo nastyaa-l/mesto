@@ -15,7 +15,6 @@ const likes = document.querySelectorAll('.element__like'),
       bin = document.querySelectorAll('.element__bin'),
       editPopup = document.querySelector('.overlay__popup_form-edit'),
       addPopup = document.querySelector('.overlay__popup_form-add'),
-      elementTemplate = document.querySelector('#element-template').content,
       addForm = document.querySelector('.overlay__submit_form-add'),
       imageCloseButton = document.querySelector('.overlay__button_image');
 
@@ -24,6 +23,7 @@ let elementTitle = document.querySelectorAll('.element__title'),
     newElementName = document.querySelector('.overlay__input_element_name'),
     newElementLink = document.querySelector('.overlay__input_element_link'),
     elementsItem = document.querySelector('.elements__items');
+   // elementsNode = document.querySelectorAll('.element')
 
 
 
@@ -111,17 +111,28 @@ function closeAddPopup() {
 addButton.addEventListener('click', openAddPopup);
 closeButtonAdd.addEventListener('click', closeAddPopup)
 
-//добавление элементов
-/*function addElements(event){
-event.preventDefault();
-const element = elementTemplate.cloneNode(true);
-element.document.querySelector('element__title').textContent = newElementName.value;
-element.document.querySelector('element__picture').src = newElementLink.value;
-elementsItem.append(element);
-closeAddPopup();
+
+
+
+  //добавление элементов
+
+const elementTemplate = document.querySelector('#element-template').content;
+let node = document.querySelectorAll('.element');
+let postArray = Array.from(document.querySelectorAll('.element'));
+
+function addElements(event){
+  event.preventDefault();
+  const element = elementTemplate.cloneNode(true);
+  element.querySelector('.element__title').textContent = newElementName.value;
+  element.querySelector('.element__picture').src = newElementLink.value;
+  elementsItem.prepend(element);
+  closeAddPopup();
+  console.log(elementsItem);
+  console.log(node);
 }
 
-addForm.addEventListener('submit', addElements);*/
+addForm.addEventListener('click', addElements);
+
 
 // лайки
 
@@ -131,14 +142,14 @@ likes.forEach(item => {
   })
 })
 
-
 //удаение элементов
 
 bin.forEach(item => {
-item.addEventListener('click', function(){
-item.parentElement.remove();
-})
-})
+  item.addEventListener('click', function(){
+  item.parentElement.remove();
+  })
+  })
+
 
 //открытие попапа  с картинкой
 
