@@ -159,8 +159,6 @@ bin.forEach(item => {
 
 
 //открытие попапа  с картинкой
-<<<<<<< HEAD
-=======
  function openImage(evt){
   overlay.classList.add('overlay_active');
   overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
@@ -169,7 +167,6 @@ bin.forEach(item => {
   overlayImage.src=evt.target.src;
   document.querySelector('.overlay__caption').textContent=elementTitle[i].textContent;
  }
->>>>>>> main
 
 elementImage.forEach((item, i) => {
   item.addEventListener('click', openImage)
