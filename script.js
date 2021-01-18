@@ -55,6 +55,8 @@ form.addEventListener('submit', submit);
 overlay.addEventListener('click', function(event){
   if (event.target === event.currentTarget){
     closePopup();
+    closeAddPopup();
+    closeImage ()
   }
   });
 
@@ -119,6 +121,7 @@ closeButtonAdd.addEventListener('click', closeAddPopup)
 const elementTemplate = document.querySelector('#element-template').content;
 let node = document.querySelectorAll('.element');
 let postArray = Array.from(document.querySelectorAll('.element'));
+console.log(postArray);
 
 function addElements(event){
   event.preventDefault();
@@ -166,7 +169,7 @@ elementImage.forEach((item, i) => {
   })
 })
 
-function closeImage (){
+function closeImage(){
   overlay.classList.remove('overlay_active');
   document.querySelector('.overlay__popup_image').classList.remove('overlay__popup_image_active');
 };

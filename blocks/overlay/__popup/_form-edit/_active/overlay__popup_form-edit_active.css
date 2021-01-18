@@ -1,4 +1,6 @@
-
 .overlay__popup_form-edit_active{
   display: block;
+  visibility: visible;
+  opacity:1;
 }
+/**/
