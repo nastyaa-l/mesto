@@ -157,8 +157,6 @@ bin.forEach(item => {
 
 //открытие попапа  с картинкой
 
-
-
 elementImage.forEach((item, i) => {
   item.addEventListener('click', function(){
     overlay.classList.add('overlay_active');
