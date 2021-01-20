@@ -14,17 +14,16 @@ const openButton = document.querySelector('.profile__edit-button'),
       addPopup = document.querySelector('.overlay__popup_form-add'),
       addForm = document.querySelector('.overlay__submit_form-add'),
       imageCloseButton = document.querySelector('.overlay__button_image'),
-      elementTemplate = document.querySelector('#element-template').content;
-
-let newName = overlay.querySelector('.overlay__input_form_name'),
-    profileName = document.querySelector('.profile__name'),
-    profileSub = document.querySelector('.profile__subscription'),
-    newSub = overlay.querySelector('.overlay__input_form_subscription'),
-    elementTitle = document.querySelectorAll('.element__title'),
-    elementImage = document.querySelectorAll('.element__picture'),
-    newElementName = document.querySelector('.overlay__input_element_name'),
-    newElementLink = document.querySelector('.overlay__input_element_link'),
-    elementsItem = document.querySelector('.elements__items');
+      newName = overlay.querySelector('.overlay__input_form_name'),
+      newElementName = document.querySelector('.overlay__input_element_name'),
+      newElementLink = document.querySelector('.overlay__input_element_link'),
+      newSub = overlay.querySelector('.overlay__input_form_subscription'),
+      elementTemplate = document.querySelector('#element-template').content,
+      profileName = document.querySelector('.profile__name'),
+      profileSub = document.querySelector('.profile__subscription'),
+      elementTitle = document.querySelectorAll('.element__title'),
+      elementImage = document.querySelectorAll('.element__picture'),
+      elementsItem = document.querySelector('.elements__items');
 
 
 
