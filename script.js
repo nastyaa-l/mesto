@@ -11,12 +11,9 @@ const openButton = document.querySelector('.profile__edit-button'),
       popupAdd = document.querySelector('.overlay__popup_add-form'),
       bin = document.querySelectorAll('.element__bin'),
       editPopup = document.querySelector('.overlay__popup_form-edit'),
-      addPopup = document.querySelector('.overlay__popup_form-add'),
       addForm = document.querySelector('.overlay__submit_form-add'),
       imageCloseButton = document.querySelector('.overlay__button_image'),
       newName = overlay.querySelector('.overlay__input_form_name'),
-      newElementName = document.querySelector('.overlay__input_element_name'),
-      newElementLink = document.querySelector('.overlay__input_element_link'),
       newSub = overlay.querySelector('.overlay__input_form_subscription'),
       elementTemplate = document.querySelector('#element-template').content,
       profileName = document.querySelector('.profile__name'),
@@ -26,13 +23,10 @@ const openButton = document.querySelector('.profile__edit-button'),
       elementsItem = document.querySelector('.elements__items');
 
 
-
-
 function openPopup(){
   overlay.classList.add('overlay_active');
   editPopup.classList.add('overlay__popup_form-edit_active');
-  newName.value = profileName.textContent;
-  newSub.value = profileSub.textContent;
+
 }
 
 function closePopup() {
@@ -40,16 +34,22 @@ function closePopup() {
     editPopup.classList.remove('overlay__popup_form-edit_active');
 }
 
-function submit(event){
+function popupIsOpened(){
+  openPopup();
+  newName.value = profileName.textContent;
+  newSub.value = profileSub.textContent;
+}
+
+function submitAddElemnts(event){
   event.preventDefault();
   profileName.textContent = newName.value;
   profileSub.textContent = newSub.value;
   closePopup();
 }
 
-openButton.addEventListener('click', openPopup);
+openButton.addEventListener('click', popupIsOpened);
 closeButtonEdit.addEventListener('click', closePopup);
-form.addEventListener('submit', submit);
+form.addEventListener('submit', submitAddElemnts);
 
 //Возможно, в будущем придется удалить
 overlay.addEventListener('click', function(event){
@@ -89,16 +89,64 @@ const initialCards = [
   }
 ];
 
-elementTitle.forEach((item,i) => {
-  item.textContent=initialCards[i].name;
-})
+const list=document.querySelector('.elements__items');
 
-elementImage.forEach((item,i) =>{
-  item.src=initialCards[i].link;
-  item.alt=initialCards[i].name;
-})
 
-//открытие формы
+function render() {
+initialCards.forEach((item,i) =>{
+  const name=initialCards[i].name;
+  const link = initialCards[i].link;
+  addCard(name,link);
+})
+};
+
+
+function addCard(name,link){
+  const element = elementTemplate.cloneNode(true);
+	element.querySelector('.element__title').textContent = name;
+  element.querySelector('.element__picture').src = link;
+  setListeners(element);
+  list.append(element);
+}
+
+
+
+function setListeners(element) {
+	element.querySelector('.element__like').addEventListener('click', addLikes);
+  element.querySelector('.element__bin').addEventListener('click', deleteCards);
+  element.querySelector('.element__picture').addEventListener('click',openImage);
+}
+
+function addLikes(evt){
+  evt.target.classList.toggle('element__like_black');
+}
+
+function deleteCards(evt){
+  evt.target.parentElement.remove();
+}
+
+function openImage(evt){
+  overlay.classList.add('overlay_active');
+  overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+  document.querySelector('.overlay__popup_image').classList.add('overlay__popup_image_active');
+  let overlayImage = document.querySelector('.overlay__image');
+  overlayImage.src=evt.target.src;
+  document.querySelector('.overlay__caption').textContent=evt.target.closest('.element').querySelector('.element__title').textContent;
+ }
+
+ const newElementName = document.querySelector('.overlay__input_element_name'),
+ newElementLink = document.querySelector('.overlay__input_element_link'),
+ addPopup = document.querySelector('.overlay__popup_form-add');
+
+
+function handleSubmit(event){
+  event.preventDefault();
+  addCard(newElementName.value, newElementLink.value);
+  document.querySelectorAll('.overlay__form')[1].reset();
+  closeAddPopup();
+}
+
+addPopup.addEventListener('submit', handleSubmit)
 
 function openAddPopup(){
   overlay.classList.add('overlay_active');
@@ -108,8 +156,6 @@ function openAddPopup(){
 function closeAddPopup() {
   overlay.classList.remove('overlay_active');
   addPopup.classList.remove('overlay__popup_form-add_active');
-  newElementName.value = "";
-  newElementLink.value = "";
 
 }
 
@@ -118,63 +164,10 @@ closeButtonAdd.addEventListener('click', closeAddPopup)
 
 
 
-
-  //добавление элементов
-
-function addElements(event){
-  event.preventDefault()
-  const element = elementTemplate.cloneNode(true);
-  element.querySelector('.element__title').textContent = newElementName.value;
-  element.querySelector('.element__picture').src = newElementLink.value;
-  setListeners(element);
-  elementsItem.prepend(element);
-  closeAddPopup();
-}
-
-addForm.addEventListener('click', addElements);
-
-function setListeners(element) {
-	element.querySelector('.element__like').addEventListener('click', addLikes);
-  element.querySelector('.element__bin').addEventListener('click', deleteCards);
-  element.querySelector('.element__picture').addEventListener('click',openImage);
-}
-// лайки
-
-function addLikes(evt){
-  evt.target.classList.toggle('element__like_black');
-}
-
-likes.forEach(item => {
-  item.addEventListener('click', addLikes)
-})
-
-//удаение элементов
-function deleteCards(evt){
-  evt.target.parentElement.remove();
-}
-bin.forEach(item => {
-  item.addEventListener('click', deleteCards);
-  })
-
-
-//открытие попапа  с картинкой
- function openImage(evt){
-  overlay.classList.add('overlay_active');
-  overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-  document.querySelector('.overlay__popup_image').classList.add('overlay__popup_image_active');
-  let overlayImage = document.querySelector('.overlay__image');
-  overlayImage.src=evt.target.src;
-  document.querySelector('.overlay__caption').textContent=elementTitle[i].textContent;
- }
-
-elementImage.forEach((item, i) => {
-  item.addEventListener('click', openImage)
-})
-
-
 function closeImage(){
   overlay.classList.remove('overlay_active');
   document.querySelector('.overlay__popup_image').classList.remove('overlay__popup_image_active');
 };
 
 imageCloseButton.addEventListener('click', closeImage)
+render();
