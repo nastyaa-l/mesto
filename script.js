@@ -10,9 +10,9 @@ const openButton = document.querySelector('.profile__edit-button'),
       elementTemplate = document.querySelector('#element-template').content,
       profileName = document.querySelector('.profile__name'),
       profileSub = document.querySelector('.profile__subscription'),
-      overlayAdd = document.querySelector('.overlay__add-popup'),
-      overlayEdit = document.querySelector('.overlay__edit-popup'),
-      openImagePopup = document.querySelector('.overlay__image-popup');
+      overlayAdd = document.querySelector('.section__add-popup'),
+      overlayEdit = document.querySelector('.section__edit-popup'),
+      openImagePopup = document.querySelector('.section__image-popup');
 
 //открытие попапа
 
@@ -69,7 +69,7 @@ function addNewCard(elem){
 
 const newElementName = document.querySelector('.overlay__input_element_name'),
 newElementLink = document.querySelector('.overlay__input_element_link'),
-addPopup = document.querySelector('.overlay__popup_form-add');
+addPopup = document.querySelector('.overlay__form_popup-add');
 
 
 function handleSubmit(event){
