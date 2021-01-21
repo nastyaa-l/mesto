@@ -10,9 +10,9 @@ const openButton = document.querySelector('.profile__edit-button'),
       elementTemplate = document.querySelector('#element-template').content,
       profileName = document.querySelector('.profile__name'),
       profileSub = document.querySelector('.profile__subscription'),
-      overlayAdd = document.querySelector('.add-popup'),
-      overlayEdit = document.querySelector('.edit-popup'),
-      openImagePopup = document.querySelector('.image-popup');
+      overlayAdd = document.querySelector('.overlay_add-popup'),
+      overlayEdit = document.querySelector('.overlay_edit-popup'),
+      openImagePopup = document.querySelector('.overlay_image-popup');
 
 //открытие попапа
 
