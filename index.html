@@ -24,62 +24,15 @@
             </section>
             <section class="elements section content__elements">
               <ul class="elements__items">
-            <!--  <li class="element">
-                <img class="element__picture" src="./image/Алтай.jpg" alt="Алтай">
-                <button class="element__bin" type="button"></button>
-                <div class="element__name-content">
-                <h2 class="element__title">Алтай</h2>
-                <button class="element__like" type="button"></button>
-                </div>
-              </li>
-              <li class="element">
-                <img class="element__picture" src="./image/Байкал.jpg" alt="Байкал">
-                <button class="element__bin" type="button"></button>
-                <div class="element__name-content">
-                <h2 class="element__title">Байкал</h2>
-                <button class="element__like" type="button"></button>
-              </div>
-            </li>
-              <li class="element">
-                <img class="element__picture" src="./image/Камчатка.jpg" alt="Камчатка">
-                <button class="element__bin" type="button"></button>
-                <div class="element__name-content">
-                <h2 class="element__title">Камчатка</h2>
-                <button class="element__like" type="button"></button>
-              </div>
-            </li>
-              <li class="element">
-                <img class="element__picture" src="./image/Крачаево-Черкеск.jpg" alt="Крачаево-Черкеск">
-                <button class="element__bin" type="button"></button>
-                <div class="element__name-content">
-                <h2 class="element__title">Крачаево-Черкеск</h2>
-                <button class="element__like" type="button"></button>
-              </div>
-            </li>
-              <li class="element">
-                <img class="element__picture" src="./image/Куршская-коса.jpg" alt="Куршская коса">
-                <button class="element__bin" type="button"></button>
-                <div class="element__name-content">
-                  <h2 class="element__title">Куршская коса</h2>
-                  <button class="element__like" type="button"></button>
-                </div>
-              </li>
-              <li class="element">
-                <img class="element__picture" src="./image/Якутия.jpg" alt="Якутия">
-                <button class="element__bin" type="button"></button>
-                <div class="element__name-content">
-                  <h2 class="element__title">Якутия</h2>
-                  <button class="element__like" type="button"></button>
-                </div>
-              </li>-->
             </ul>
             </section>
           </main>
           <footer class="footer section page__footer">
               <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
           </footer>
-          <section class="overlay">
-            <div class="overlay__popup overlay__popup_form-edit">
+          <section class="overlay overlay__edit-popup">
+            <div class="overlay__popup">
+          <!--  <div class="overlay__popup overlay__popup_form-edit">-->
               <h2 class="overlay__subscription">Редактировать профиль</h2>
               <form class="overlay__form" name="form">
               <input type="text" class="overlay__input overlay__input_form_name" name="profile-name">
@@ -88,15 +41,19 @@
               </form>
               <button class="overlay__button overlay__button_form-edit" type="button"></button>
             </div>
-            <div class="overlay__popup overlay__popup_form-add">
+          </section>
+           <section class="overlay overlay__add-popup">
+            <div class="overlay__popup">
               <h2 class="overlay__subscription">Новое место</h2>
-              <form class="overlay__form" name="form">
+              <form class="overlay__form overlay__popup_form-add" name="form">
               <input type="text" class="overlay__input overlay__input_element_name" name="element-name" placeholder="Название">
               <input type="url" class="overlay__input overlay__input_element_link" name="element-link" placeholder="Ссылка на картинку" required>
               <button type="submit" class="overlay__submit overlay__submit_form-add">Создать</button>
               </form>
               <button class="overlay__button overlay__button_form-add" type="button"></button>
            </div>
+          </section>
+          <section class="overlay overlay__image-popup">
            <div class="overlay__popup overlay__popup_image">
             <figure class ="overlay__content">
             <img class="overlay__image" alt="изображение места" src="./image/Алтай.jpg">
