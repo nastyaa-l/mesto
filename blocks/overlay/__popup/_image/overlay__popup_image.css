@@ -1,7 +1,0 @@
-.overlay__popup_image{
-  display: none;
-  padding:0;
-  background: transparent;
-  max-width: 75vw; /* тут ширина становится больше, чем ширина изображения,
-  из-за этого уезжает крестик. Но вот это поправить у меня не получилось :( */
-}

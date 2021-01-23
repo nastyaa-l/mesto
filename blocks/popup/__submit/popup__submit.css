@@ -1,4 +1,4 @@
-.overlay__submit{
+.popup__submit{
   color: #FFFFFF;
   font-weight: normal;
   font-size: 18px;
@@ -16,13 +16,13 @@
   border-radius: 2px;
 }
 
-.overlay__submit:hover{
+.popup__submit:hover{
   opacity: 0.8;
   cursor: pointer;
 }
 
 @media screen and (max-width: 525px){
-  .overlay__submit{
+  .popup__submit{
     margin-top: 45px;
     font-size: 14px;
     line-height: 17px;

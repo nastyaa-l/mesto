@@ -30,37 +30,39 @@
           <footer class="footer section page__footer">
               <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
           </footer>
-          <section class="overlay overlay_edit-popup">
-            <div class="overlay__popup">
-              <h2 class="overlay__subscription">Редактировать профиль</h2>
-              <form class="overlay__form" name="form">
-              <input type="text" class="overlay__input overlay__input_form_name" name="profile-name">
-              <input type="text" class="overlay__input overlay__input_form_subscription" name="profile-subscription">
-              <button type="submit" class="overlay__submit">Сохранить</button>
+          <section class="popup">
+           <div class="popup__overlay popup__overlay_edit-popup">
+            <div class="popup__content popup__content_edit">
+              <h2 class="popup__subscription">Редактировать профиль</h2>
+              <form class="popup__form" name="form">
+              <input type="text" class="popup__input popup__input_form_name" name="profile-name">
+              <input type="text" class="popup__input popup__input_form_subscription" name="profile-subscription">
+              <button type="submit" class="popup__submit">Сохранить</button>
               </form>
-              <button class="overlay__button overlay__button_form-edit" type="button"></button>
+              <button class="popup__button popup__button_close-edit" type="button"></button>
             </div>
-          </section>
-           <section class="overlay overlay_add-popup">
-            <div class="overlay__popup">
-              <h2 class="overlay__subscription">Новое место</h2>
-              <form class="overlay__form overlay__form_popup-add" name="form">
-              <input type="text" class="overlay__input overlay__input_element_name" name="element-name" placeholder="Название">
-              <input type="url" class="overlay__input overlay__input_element_link" name="element-link" placeholder="Ссылка на картинку" required>
-              <button type="submit" class="overlay__submit overlay__submit_form-add">Создать</button>
+          </div>
+           <div class="popup__overlay popup__overlay_add-popup">
+            <div class="popup__content popup__content_add">
+              <h2 class="popup__subscription">Новое место</h2>
+              <form class="popup__form popup__form_add" name="form">
+              <input type="text" class="popup__input popup__input_element_name" name="element-name" placeholder="Название">
+              <input type="url" class="popup__input popup__input_element_link" name="element-link" placeholder="Ссылка на картинку" required>
+              <button type="submit" class="popup__submit popup__submit_form-add">Создать</button>
               </form>
-              <button class="overlay__button overlay__button_form-add" type="button"></button>
+              <button class="popup__button popup__button_close-add" type="button"></button>
            </div>
-          </section>
-          <section class="overlay overlay_image-popup">
-           <div class="overlay__popup overlay__popup_image">
-            <figure class ="overlay__content">
-            <img class="overlay__image" alt="изображение места" src="./image/Алтай.jpg">
-            <figcaption class ="overlay__caption"></figcaption>
+          </div>
+          <div class="popup__overlay popup__overlay_image-popup">
+           <div class="popup__content popup__content_image">
+            <figure class ="popup__container">
+            <img class="popup__image" alt="изображение места" src="./image/Алтай.jpg">
+            <figcaption class ="popup__caption"></figcaption>
+            <button class="popup__button popup__button_close-image" type="button"></button>
           </figure>
-          <button class="overlay__button overlay__button_image" type="button"></button>
          </div>
-        </section>
+        </div>
+      </section>
       </div>
       <template id="element-template">
         <li class="element">
