@@ -23,19 +23,18 @@ function openPopup(overlayName){
   overlayName.classList.add('popup__overlay_active');
 }
 
-function openImage(evt){
-  openImagePopup.classList.add('popup__overlay_active');
-  //document.querySelector('.popup__content_image').classList.add('popup__content_image_active');
+function ImageIsOpened(evt){
   const overlayImage = document.querySelector('.popup__image');
   overlayImage.src=evt.target.src;
   overlayImage.alt = evt.target.closest('.element').querySelector('.element__title').textContent;
   document.querySelector('.popup__caption').textContent=evt.target.closest('.element').querySelector('.element__title').textContent;
- };
+  openPopup(openImagePopup);
+};
 
  function popupIsOpened(){
-  openPopup(overlayEdit);
   newName.value = profileName.textContent;
   newSub.value = profileSub.textContent;
+  openPopup(overlayEdit);
 }
 
 function submitAddElemnts(event){
@@ -73,7 +72,7 @@ function handleSubmit(event){
 function setListeners(element) {
 	element.querySelector('.element__like').addEventListener('click', addLikes);
   element.querySelector('.element__bin').addEventListener('click', deleteCards);
-  element.querySelector('.element__picture').addEventListener('click',openImage);
+  element.querySelector('.element__picture').addEventListener('click',ImageIsOpened);
 }
 
 function addLikes(evt){
