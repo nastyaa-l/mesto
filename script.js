@@ -12,6 +12,7 @@ const openButton = document.querySelector('.profile__edit-button'),
       profileSub = document.querySelector('.profile__subscription'),
       overlayAdd = document.querySelector('.popup__overlay_add-popup'),
       overlayEdit = document.querySelector('.popup__overlay_edit-popup'),
+      overlayImage = document.querySelector('.popup__overlay_image-popup'),
       openImagePopup = document.querySelector('.popup__overlay_image-popup'),
       newElementName = document.querySelector('.popup__input_element_name'),
       newElementLink = document.querySelector('.popup__input_element_link'),
@@ -23,12 +24,13 @@ function openPopup(overlayName){
   overlayName.classList.add('popup__overlay_active');
 }
 
-function ImageIsOpened(evt){
-  const overlayImage = document.querySelector('.popup__image');
-  overlayImage.src=evt.target.src;
-  overlayImage.alt = evt.target.closest('.element').querySelector('.element__title').textContent;
+function imageIsOpened(evt){
+  const popupImage = document.querySelector('.popup__image');
+  console.log(evt.target);
+  popupImage.src=evt.target.src;
+  popupImage.alt = evt.target.closest('.element').querySelector('.element__title').textContent;
   document.querySelector('.popup__caption').textContent=evt.target.closest('.element').querySelector('.element__title').textContent;
-  openPopup(openImagePopup);
+  openPopup(overlayImage);
 };
 
  function popupIsOpened(){
@@ -41,14 +43,18 @@ function submitAddElemnts(event){
   event.preventDefault();
   profileName.textContent = newName.value;
   profileSub.textContent = newSub.value;
-  closePopup();
+  closePopup(overlayEdit);
 }
+
+function closePopup(overlayName) {
+  overlayName.classList.remove('popup__overlay_active');
+};
 
 //закрытие
 
-function closePopup(event) {
+/*function closePopup(event) {
   event.target.closest('.popup__overlay').remove('popup__overlay_active');
-};
+};*/
 
 /*Клик по оверлею
 overlay.addEventListener('click', function(event){
@@ -66,13 +72,13 @@ function handleSubmit(event){
   const newEl = addCard(newElementName.value, newElementLink.value);
   addNewCard(newEl);
   addPopup.reset();
-  closePopup();
+  closePopup(overlayAdd);
 }
 
 function setListeners(element) {
 	element.querySelector('.element__like').addEventListener('click', addLikes);
   element.querySelector('.element__bin').addEventListener('click', deleteCards);
-  element.querySelector('.element__picture').addEventListener('click',ImageIsOpened);
+  element.querySelector('.element__picture').addEventListener('click',imageIsOpened);
 }
 
 function addLikes(evt){
@@ -90,15 +96,22 @@ addButton.addEventListener('click', function(){
   openPopup(overlayAdd);
 });
 
-closeButtonAdd.addEventListener('click', closePopup);
+closeButtonAdd.addEventListener('click', function(){
+  closePopup(overlayAdd);
+});
 
 openButton.addEventListener('click', popupIsOpened);
-closeButtonEdit.addEventListener('click', closePopup);
+closeButtonEdit.addEventListener('click', function(){
+  closePopup(overlayEdit);
+});
+
 form.addEventListener('submit', submitAddElemnts);
 
 addPopup.addEventListener('submit', handleSubmit);
 
-imageCloseButton.addEventListener('click', closePopup);
+imageCloseButton.addEventListener('click',function(){
+  closePopup(overlayImage);
+});
 
 
 //добавление исходных карточек
