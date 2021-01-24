@@ -26,8 +26,7 @@ function openPopup(overlayName){
 
 function imageIsOpened(evt){
   const popupImage = document.querySelector('.popup__image');
-  console.log(evt.target);
-  popupImage.src=evt.target.src;
+  popupImage.src = evt.target.src;
   popupImage.alt = evt.target.closest('.element').querySelector('.element__title').textContent;
   document.querySelector('.popup__caption').textContent=evt.target.closest('.element').querySelector('.element__title').textContent;
   openPopup(overlayImage);
@@ -49,12 +48,6 @@ function submitAddElemnts(event){
 function closePopup(overlayName) {
   overlayName.classList.remove('popup__overlay_active');
 };
-
-//закрытие
-
-/*function closePopup(event) {
-  event.target.closest('.popup__overlay').remove('popup__overlay_active');
-};*/
 
 /*Клик по оверлею
 overlay.addEventListener('click', function(event){
@@ -157,11 +150,15 @@ function addCardDocElem(elem){
   list.append(elem);
 }
 
+
+
 function addCard(name,link){
   const element = elementTemplate.cloneNode(true);
-  element.querySelector('.element__title').textContent = name;
-  element.querySelector('.element__picture').src = link;
-  element.querySelector('.element__picture').alt = name;
+  const newElementTitle = element.querySelector('.element__title'),
+        newElementPic = element.querySelector('.element__picture');
+  newElementTitle.textContent = name;
+  newElementPic.src = link;
+  newElementPic.alt = name;
   setListeners(element);
   return element;
 
