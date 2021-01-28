@@ -19,16 +19,14 @@
   border-bottom: rgba(255,0,0, 1) 1px solid;
 }
 
-.popup__input-error{
-  display:none;
-}
-
 .popup__input-error_active{
+  margin-top: 5px;
   display: block;
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
   color: #FF0000;
+
 }
 
 @media screen and (max-width: 525px){

@@ -22,33 +22,6 @@ const openButton = document.querySelector('.profile__edit-button'),
 
 function openPopup(overlayName){
   overlayName.classList.add('popup__overlay_active');
-  const formElement = document.querySelector('.popup__form_edit');
-const formInput = formElement.querySelector('.popup__input_form_name');
-const formError = formElement.querySelector(`.${formInput.id}-error`);
-console.log(formInput)
-
-function showInputMessage(element, erorMessage){
-  element.classList.add('popup__input_active');
-  formError.text = erorMessage;
-  formError.classList.add('popup__input-error_active');
-}
-
-function HideInputMessage(element){
-  element.classList.remove('popup__input_active');
-  formError.text ="";
-  formError.classList.remove('popup__input-error_active');
-}
-
-function IsValid(){
-  if(!form.Input.validity.valid){
-    showInputMessage(formInput, formInput.validityMessage)
-  }
-  else{
-    HideInputMessage(formInput)
-  }
-}
-
-IsValid();
 }
 
 function imageIsOpened(evt){
@@ -191,6 +164,67 @@ function addCard(name,link){
 
 }
 
+const formElement = document.forms.formedit;
+
+
+function showInputMessage(element, erorMessage){
+  const formError = formElement.querySelector(`.${element.id}-error`);
+  element.classList.add('popup__input_active');
+  formError.textContent = erorMessage;
+  formError.classList.add('popup__input-error_active');
+}
+
+function HideInputMessage(element){
+  const formError = formElement.querySelector(`.${element.id}-error`);
+  element.classList.remove('popup__input_active');
+  formError.textContent ="";
+  formError.classList.remove('popup__input-error_active');
+}
+
+function IsValid(inputElement){
+  if(!inputElement.validity.valid){
+    showInputMessage(inputElement, inputElement.validationMessage)
+  }
+  else{
+    HideInputMessage(inputElement)
+  }
+}
+
+function setEventListeners(formElement) {
+  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  const buttonElement = formElement.querySelector('.popup__submit');
+  inputList.forEach((inputElement) =>{
+    inputElement.addEventListener('input', function(){
+      IsValid(inputElement);
+      toggleButtonState(inputList, buttonElement);
+    })
+  })
+
+}
+
+function hasInValid (inputList){
+  return inputList.some((inputElement) => //если есть хоть один false, возвращает true
+  {
+    return !inputElement.validity.valid;
+  }
+  )
+  }
+
+function toggleButtonState (inputList, buttonElement){
+  if(hasInValid(inputList)){
+    buttonElement.classList.add('popup__submit_disabled');
+    buttonElement.setAttribute('disabled', true);
+  }
+  else {
+    buttonElement.classList.remove('popup__submit_disabled');
+    buttonElement.removeAttribute('disabled', true);
+
+  }
+}
+
+
+
+setEventListeners(formElement);
 
 
 render();
