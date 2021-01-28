@@ -14,6 +14,23 @@
   margin-top: 30px;
 }
 
+
+.popup__input_active{
+  border-bottom: rgba(255,0,0, 1) 1px solid;
+}
+
+.popup__input-error{
+  display:none;
+}
+
+.popup__input-error_active{
+  display: block;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FF0000;
+}
+
 @media screen and (max-width: 525px){
   .popup__input{
     margin-top: 75px;
@@ -22,3 +39,5 @@
     margin-top: 30px;
   }
 }
+
+

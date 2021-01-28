@@ -22,6 +22,33 @@ const openButton = document.querySelector('.profile__edit-button'),
 
 function openPopup(overlayName){
   overlayName.classList.add('popup__overlay_active');
+  const formElement = document.querySelector('.popup__form_edit');
+const formInput = formElement.querySelector('.popup__input_form_name');
+const formError = formElement.querySelector(`.${formInput.id}-error`);
+console.log(formInput)
+
+function showInputMessage(element, erorMessage){
+  element.classList.add('popup__input_active');
+  formError.text = erorMessage;
+  formError.classList.add('popup__input-error_active');
+}
+
+function HideInputMessage(element){
+  element.classList.remove('popup__input_active');
+  formError.text ="";
+  formError.classList.remove('popup__input-error_active');
+}
+
+function IsValid(){
+  if(!form.Input.validity.valid){
+    showInputMessage(formInput, formInput.validityMessage)
+  }
+  else{
+    HideInputMessage(formInput)
+  }
+}
+
+IsValid();
 }
 
 function imageIsOpened(evt){
@@ -45,16 +72,16 @@ function submitAddElemnts(event){
   closePopup(overlayEdit);
 }
 
-function closePopup(overlayName) {
+function closePopup(overlayName, event) {
   overlayName.classList.remove('popup__overlay_active');
 };
+
 
 /*Клик по оверлею
 overlay.addEventListener('click', function(event){
   if (event.target === event.currentTarget){
   }
   });*/
-//добавление новой карточки
 
 function addNewCard(elem){
   list.prepend(elem);
@@ -163,5 +190,7 @@ function addCard(name,link){
   return element;
 
 }
+
+
 
 render();
