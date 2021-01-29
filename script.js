@@ -162,76 +162,7 @@ function addCard(name,link){
   setListeners(element);
   return element;
 }
-
-function showInputMessage(formElement, inputElement, errorMessage){
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  errorElement.classList.add('popup__input-error_active');
-  inputElement.classList.add('popup__input_active');
-  errorElement.textContent = errorMessage;
-}
-
-function HideInputMessage (formElement, inputElement){
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  errorElement.classList.remove('popup__input-error_active');
-  inputElement.classList.remove('popup__input_active');
-  errorElement.textContent ="";
-}
-
-function IsValid(formElement, inputElement) {
-  if (!inputElement.validity.valid){
-    showInputMessage(formElement, inputElement, inputElement.validationMessage);
-  }
-  else{
-    HideInputMessage(formElement, inputElement);
-  }
-}
-
-function setEventListeners(formElement){
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  const buttonElement = formElement.querySelector('.popup__submit');
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', function(){
-      IsValid(formElement, inputElement);
-      hasInValid(inputList);
-  })
-})
-
-    toggleButtonState(inputList, buttonElement)
-}
-
-  function enableValidation(){
-    const formList = Array.from(document.querySelectorAll('.popup__form'));
-    formList.forEach ((formElement) => {
-      formElement.addEventListener('submit', function(event){
-        event.preventDefault();
-      })
-      setEventListeners(formElement);
-    })
-  }
-
-  function hasInValid(inputList){
-    return inputList.some((inputElement) =>{
-      console.log((inputElement.validity.valid))
-      return inputElement.validity.valid;
-    })
-  }
-
-  function toggleButtonState(inputList, buttonElement){
-    if (hasInValid(inputList)){
-      buttonElement.classList.add('.popup__submit_disabled');
-      buttonElement.setAttribute('disabled', true);
-    }
-    else{
-      buttonElement.classList.remove('.popup__submit_disabled');
-      buttonElement.removeAttribute('disabled', true);
-    }
-  }
-
-  enableValidation();
-
-
-
-/*function showInputMessage(formElement, inputElement, erorMessage){
+function showInputMessage(formElement, inputElement, erorMessage){
   const formError = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add('popup__input_active');
   formError.textContent = erorMessage;
@@ -295,6 +226,6 @@ function toggleButtonState (inputList, buttonElement){
 }
 
 enableValidation();
-*/
+
 
 render();

@@ -5,7 +5,7 @@
   color: #000000;
 }
 
-.popup__submit:hover{
+.popup__submit_disabled:hover{
   opacity: 0.2;
   cursor: auto;
 }
