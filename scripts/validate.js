@@ -14,7 +14,7 @@ function HideInputMessage(formElement, inputElement,ValidationObject){
 
 function IsValid(formElement, inputElement, ValidationObject){
   if(!inputElement.validity.valid){  //заметила,что первый попап не видит пустые инпуты и позволяет сохранять их,
-                                    //со вторым таких проблем нет. Но не очень понимаю, из-за чего возникает этв ошибка
+                                    //со вторым таких проблем нет. Но не очень понимаю, из-за чего возникает эта ошибка!
     showInputMessage(formElement, inputElement, inputElement.validationMessage, ValidationObject)
   }
   else{

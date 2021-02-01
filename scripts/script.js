@@ -33,6 +33,11 @@ const ValidationObject ={
 
 function openPopup(overlayName){
   overlayName.classList.add('popup__overlay_active');
+  document.addEventListener('keydown', function(evt){
+    if (evt.key==="Escape"){
+      closePopup(overlayName);
+    }
+    })
 }
 
 function imageIsOpened(evt){
@@ -114,11 +119,6 @@ overlayList.forEach( overlayBlock =>{
     if (evt.target === evt.currentTarget) {
       closePopup(overlayBlock);
     }
-  })
-  overlayBlock.addEventListener('keydown', function(evt){
-  if (evt.key==="Escape"){  //активриуется только полсе клика на попап ?
-    closePopup(overlayBlock);
-  }
   })
 });
 
