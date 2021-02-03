@@ -38,11 +38,7 @@ inputSub.value = profileSub.textContent;
 // функция открытия попапа
 function openPopup(popupName){
   popupName.classList.add('popup__overlay_active');
-  document.addEventListener('keydown', function(evt){
-    if (evt.key==="Escape"){
-      closePopup(popupName);
-    }
-  })
+  document.addEventListener('keydown', () => closePopupwithEsc(popupName, event))
 };
 
 // функция, меняющая картинку и описание карточки
@@ -59,18 +55,25 @@ function submitAddElemnts(event){
   profileName.textContent = inputName.value;
   profileSub.textContent = inputSub.value;
   closePopup(popupEdit);
-}
-
+};
 
 // закрытие попапа
 function closePopup(popupName) {
   popupName.classList.remove('popup__overlay_active');
+  document.removeEventListener('keydown', ()=> closePopupwithEsc(popupName, event))
+};
+
+// добавление слушателя на эскейп
+function closePopupwithEsc(popupName, event) {
+    if(event.key === 'Escape'){
+      closePopup(popupName);
+    }
 };
 
 // добавление новой карточки в список карточек
 function addNewCard(elem){
   list.prepend(elem);
-}
+};
 
 //сабмит новой карточки из пользовательского ввода
 function handleSubmit(event){
@@ -79,25 +82,24 @@ function handleSubmit(event){
   addNewCard(newEl);
   formAddPopup.reset();
   closePopup(popupAdd);
-}
+};
 
 // добавление событий на карточку
 function setListeners(element) {
 	element.querySelector('.element__like').addEventListener('click', addLikes);
   element.querySelector('.element__bin').addEventListener('click', deleteCards);
   element.querySelector('.element__picture').addEventListener('click',imageIsOpened);
-}
+};
 
 // добавление лайков
 function addLikes(evt){
   evt.target.classList.toggle('element__like_black');
-}
+};
 
 // удаление карточек
 function deleteCards(evt){
   evt.target.parentElement.remove();
-}
-
+};
 
 // обработчики
 addButton.addEventListener('click', () => openPopup(popupAdd));
@@ -107,7 +109,6 @@ openButton.addEventListener('click', () => openPopup(popupEdit));
 form.addEventListener('submit', submitAddElemnts);
 formAddPopup.addEventListener('submit', handleSubmit);
 imageCloseButton.addEventListener('click', () => closePopup(popupImage));
-
 
 // закрытие попапа по клику на оверлэй
 overlayList.forEach( overlayBlock =>{
@@ -146,7 +147,6 @@ const initialCards = [
   }
 ];
 
-
 // обработка массива карточек
 function render() {
 initialCards.forEach((item,i) =>{
@@ -158,7 +158,7 @@ initialCards.forEach((item,i) =>{
 // добавление карточки из массива в список карточек
 function addCardDocElem(elem){
   list.append(elem);
-}
+};
 
 // добавление новой карточки
 function addCard(name,link){
@@ -170,7 +170,7 @@ function addCard(name,link){
   newElementPic.alt = name;
   setListeners(element);
   return element;
-}
+};
 
 // вызов функции
 render();
