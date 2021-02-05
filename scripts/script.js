@@ -38,7 +38,7 @@ inputSub.value = profileSub.textContent;
 // функция открытия попапа
 function openPopup(popupName){
   popupName.classList.add('popup__overlay_active');
-  document.addEventListener('keydown', () => closePopupwithEsc(popupName, event))
+  document.addEventListener('keydown', closePopupwithEsc)
 };
 
 // функция, меняющая картинку и описание карточки
@@ -60,13 +60,13 @@ function submitAddElemnts(event){
 // закрытие попапа
 function closePopup(popupName) {
   popupName.classList.remove('popup__overlay_active');
-  document.removeEventListener('keydown', ()=> closePopupwithEsc(popupName, event))
+  document.removeEventListener('keydown', closePopupwithEsc)
 };
 
 // добавление слушателя на эскейп
-function closePopupwithEsc(popupName, event) {
+function closePopupwithEsc(event) {
     if(event.key === 'Escape'){
-      closePopup(popupName);
+        closePopup(document.querySelector('.popup__overlay_active'))
     }
 };
 
