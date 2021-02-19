@@ -1,3 +1,5 @@
+import {Card} from "./Card.js"
+
 // переменные - кнопки
 const openButton = document.querySelector('.profile__edit-button'),
       closeButtonEdit = document.querySelector('.popup__button-close_close-edit'),
@@ -79,17 +81,17 @@ function addNewCard(elem){
 function handleSubmit(event){
   event.preventDefault();
   const newEl = addCard(inputElementName.value, inputElementLink.value);
-  addNewCard(newEl);
+ // addNewCard(newEl);
   formAddPopup.reset();
   closePopup(popupAdd);
 };
 
 // добавление событий на карточку
-function setListeners(element) {
+/*function setListeners(element) {
 	element.querySelector('.element__like').addEventListener('click', addLikes);
   element.querySelector('.element__bin').addEventListener('click', deleteCards);
   element.querySelector('.element__picture').addEventListener('click',imageIsOpened);
-};
+};*/
 
 // добавление лайков
 function addLikes(evt){
@@ -133,7 +135,7 @@ function addCardDocElem(elem){
 };
 
 // добавление новой карточки
-function addCard(name,link){
+/*function addCard(name,link){
   const element = elementTemplate.cloneNode(true);
   const newElementTitle = element.querySelector('.element__title'),
         newElementPic = element.querySelector('.element__picture');
@@ -142,10 +144,43 @@ function addCard(name,link){
   newElementPic.alt = name;
   setListeners(element);
   return element;
-};
+};*/
 
 // вызов функции
-render();
+//render();
 
+// массив исходных карточек
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
+//обработка массива карточек и показ их на старнице
+initialCards.forEach ((item) => {
+  const card = new Card(item);
+  const cardElement = card.generateCard();
+  list.append(cardElement);
+})
 
