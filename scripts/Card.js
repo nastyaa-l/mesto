@@ -1,3 +1,4 @@
+import {elementPicture, elementCaption, popupImage, openPopup} from "./script.js"
 
 // класс создания карточек
 export class Card {
@@ -36,9 +37,9 @@ export class Card {
     this._element.remove();
   };
 
-  //открытие изображения Не РАБОТАЕТ!
-  _imageIsOpened(){
-    elementPicture.src = this._element.src;
+  //открытие изображения
+  _handleOpenImage(){
+    elementPicture.src = this._element.querySelector('.element__picture').src;
     elementPicture.alt = this._element.closest('.element').querySelector('.element__title').textContent;
     elementCaption.textContent = this._element.closest('.element').querySelector('.element__title').textContent;
     openPopup(popupImage);
@@ -53,11 +54,9 @@ export class Card {
       this._deleteCard();
     });
     this._element.querySelector('.element__picture').addEventListener('click', ()=> {
-      this._imageIsOpened();
+      this._handleOpenImage();
     });
   }
-
-
 }
 
 

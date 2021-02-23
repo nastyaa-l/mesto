@@ -1,7 +1,7 @@
 import {Card} from "./Card.js"
 
 // переменные - кнопки
-const openButton = document.querySelector('.profile__edit-button'),
+export const openButton = document.querySelector('.profile__edit-button'),
       closeButtonEdit = document.querySelector('.popup__button-close_close-edit'),
       closeButtonAdd = document.querySelector('.popup__button-close_close-add'),
       addButton = document.querySelector('.profile__add-button'),
@@ -38,7 +38,7 @@ inputName.value = profileName.textContent;
 inputSub.value = profileSub.textContent;
 
 // функция открытия попапа
-function openPopup(popupName){
+export function openPopup(popupName){
   popupName.classList.add('popup__overlay_active');
   document.addEventListener('keydown', closePopupwithEsc)
 };
@@ -72,37 +72,6 @@ function closePopupwithEsc(event) {
     }
 };
 
-// добавление новой карточки в список карточек
-function addNewCard(elem){
-  list.prepend(elem);
-};
-
-//сабмит новой карточки из пользовательского ввода
-function handleSubmit(event){
-  event.preventDefault();
-  const newEl = addCard(inputElementName.value, inputElementLink.value);
- // addNewCard(newEl);
-  formAddPopup.reset();
-  closePopup(popupAdd);
-};
-
-// добавление событий на карточку
-/*function setListeners(element) {
-	element.querySelector('.element__like').addEventListener('click', addLikes);
-  element.querySelector('.element__bin').addEventListener('click', deleteCards);
-  element.querySelector('.element__picture').addEventListener('click',imageIsOpened);
-};*/
-
-// добавление лайков
-function addLikes(evt){
-  evt.target.classList.toggle('element__like_black');
-};
-
-// удаление карточек
-function deleteCards(evt){
-  evt.target.parentElement.remove();
-};
-
 // обработчики
 addButton.addEventListener('click', () => openPopup(popupAdd));
 closeButtonAdd.addEventListener('click', () => closePopup(popupAdd));
@@ -120,34 +89,6 @@ overlayList.forEach( overlayBlock =>{
     }
   })
 });
-
-// обработка массива карточек
-function render() {
-initialCards.forEach((item,i) =>{
-  const el = addCard(item.name,item.link);
-  addCardDocElem(el);
-})
-};
-
-// добавление карточки из массива в список карточек
-function addCardDocElem(elem){
-  list.append(elem);
-};
-
-// добавление новой карточки
-/*function addCard(name,link){
-  const element = elementTemplate.cloneNode(true);
-  const newElementTitle = element.querySelector('.element__title'),
-        newElementPic = element.querySelector('.element__picture');
-  newElementTitle.textContent = name;
-  newElementPic.src = link;
-  newElementPic.alt = name;
-  setListeners(element);
-  return element;
-};*/
-
-// вызов функции
-//render();
 
 // массив исходных карточек
 const initialCards = [
@@ -184,3 +125,16 @@ initialCards.forEach ((item) => {
   list.append(cardElement);
 })
 
+//сабмит новой карточки из пользовательского ввода
+function handleSubmit(event){
+  event.preventDefault();
+  const cardItem = {
+    name: inputElementName.value,
+    link: inputElementLink.value
+  }
+  const card = new Card(cardItem);
+  const cardElement = card.generateCard();
+  list.prepend(cardElement)
+  formAddPopup.reset();
+  closePopup(popupAdd);
+};
