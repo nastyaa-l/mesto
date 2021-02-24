@@ -1,3 +1,4 @@
+/*
 // показ ошибки инпута
 function showInputMessage(formElement, inputElement, erorMessage, validationObject){
   const formError = formElement.querySelector(`.${inputElement.id}-error`);
@@ -76,4 +77,4 @@ enableValidation({
   inactiveButtonClass: 'popup__submit_disabled',
   inputElement: 'popup__input_active',
   errorClass: 'popup__input-error_active'
-  });
+  });*/

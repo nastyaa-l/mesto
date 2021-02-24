@@ -1,4 +1,5 @@
 import {Card} from "./Card.js"
+import {FormValidator} from "./FormValidator.js"
 
 // переменные - кнопки
 export const openButton = document.querySelector('.profile__edit-button'),
@@ -15,6 +16,7 @@ export const openButton = document.querySelector('.profile__edit-button'),
 // формы
       form = document.querySelector('.popup__form'),
       formAddPopup = document.querySelector('.popup__form_add'),
+      formEditPopup = document.querySelector('.popup__form_edit'),
 
 // инпуты
       inputName = document.querySelector('.popup__input_form_name'),
@@ -29,9 +31,19 @@ export const openButton = document.querySelector('.profile__edit-button'),
       elementCaption = document.querySelector('.popup__caption'),
 
 //списки
-      overlayList = Array.from(document.querySelectorAll('.popup__overlay')),
+     overlayList = Array.from(document.querySelectorAll('.popup__overlay')),
       list = document.querySelector('.elements__items'),
       elementTemplate = document.querySelector('#element-template').content;
+
+//объект с селекторами валидации
+const validationObject = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit',
+    inactiveButtonClass: 'popup__submit_disabled',
+    inputElement: 'popup__input_active',
+    errorClass: 'popup__input-error_active'
+}
 
 // инпут соответсувует описанию профиля
 inputName.value = profileName.textContent;
@@ -138,3 +150,8 @@ function handleSubmit(event){
   formAddPopup.reset();
   closePopup(popupAdd);
 };
+
+//валидация формы попапа добавления карточки
+
+const openValidationForm = new FormValidator(validationObject, formAddPopup)
+openValidationForm.enableValidation();
