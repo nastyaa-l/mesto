@@ -1,5 +1,7 @@
-import {Card} from "./Card.js"
-import {FormValidator} from "./FormValidator.js"
+//импорты
+import {Card} from "../components/Card.js";
+import {FormValidator} from "../components/FormValidator.js";
+import {initialCards} from "./config.js";
 
 // переменные - кнопки
 export const openButton = document.querySelector('.profile__edit-button'),
@@ -84,52 +86,6 @@ function closePopupwithEsc(event) {
     }
 };
 
-// обработчики
-addButton.addEventListener('click', () => openPopup(popupAdd));
-closeButtonAdd.addEventListener('click', () => closePopup(popupAdd));
-closeButtonEdit.addEventListener('click', () => closePopup(popupEdit));
-openButton.addEventListener('click', () => openPopup(popupEdit));
-form.addEventListener('submit', submitAddElemnts);
-formAddPopup.addEventListener('submit', handleSubmit);
-imageCloseButton.addEventListener('click', () => closePopup(popupImage));
-
-// закрытие попапа по клику на оверлэй
-overlayList.forEach( overlayBlock =>{
-  overlayBlock.addEventListener('click', function(evt){
-    if (evt.target === evt.currentTarget) {
-      closePopup(overlayBlock);
-    }
-  })
-});
-
-// массив исходных карточек
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 //обработка массива карточек и показ их на старнице
 initialCards.forEach ((item) => {
   const card = new Card(item);
@@ -152,6 +108,32 @@ function handleSubmit(event){
 };
 
 //валидация формы попапа добавления карточки
+const openValidatorForm = new FormValidator(validationObject, formAddPopup);
+openValidatorForm.enableValidation();
 
-const openValidationForm = new FormValidator(validationObject, formAddPopup)
-openValidationForm.enableValidation();
+//валидация формы попапа редактирования профиля
+const editValidatorForm = new FormValidator(validationObject, formEditPopup);
+editValidatorForm.enableValidation();
+
+// закрытие попапа по клику на оверлэй
+overlayList.forEach( overlayBlock =>{
+  overlayBlock.addEventListener('click', function(evt){
+    if (evt.target === evt.currentTarget) {
+      closePopup(overlayBlock);
+    }
+  })
+});
+
+// обработчики
+addButton.addEventListener('click', () => openPopup(popupAdd));
+closeButtonAdd.addEventListener('click', () => closePopup(popupAdd));
+closeButtonEdit.addEventListener('click', () => closePopup(popupEdit));
+openButton.addEventListener('click', () => openPopup(popupEdit));
+form.addEventListener('submit', submitAddElemnts);
+formAddPopup.addEventListener('submit', handleSubmit);
+imageCloseButton.addEventListener('click', () => closePopup(popupImage));
+
+
+
+
+

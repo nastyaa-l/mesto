@@ -1,4 +1,4 @@
-import {elementPicture, elementCaption, popupImage, openPopup} from "./script.js"
+import {elementPicture, elementCaption, popupImage, openPopup} from "../scripts/script.js"
 
 // класс создания карточек
 export class Card {
