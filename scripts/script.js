@@ -34,8 +34,7 @@ export const openButton = document.querySelector('.profile__edit-button'),
 
 //списки
      overlayList = Array.from(document.querySelectorAll('.popup__overlay')),
-      list = document.querySelector('.elements__items'),
-      elementTemplate = document.querySelector('#element-template').content;
+      list = document.querySelector('.elements__items');
 
 //объект с селекторами валидации
 const validationObject = {
@@ -58,10 +57,10 @@ export function openPopup(popupName){
 };
 
 // функция, меняющая картинку и описание карточки
-function imageIsOpened(evt){
-  elementPicture.src = evt.target.src;
-  elementPicture.alt = evt.target.closest('.element').querySelector('.element__title').textContent;
-  elementCaption.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
+export function handleOpenImage(link, name){
+  elementPicture.src = link;
+  elementPicture.alt = name;
+  elementCaption.textContent = name;
   openPopup(popupImage);
 };
 
@@ -86,12 +85,17 @@ function closePopupwithEsc(event) {
     }
 };
 
+//создание карточки с изображением
+function createCard(item){
+  const card = new Card(item, '#element-template');
+  return card.generateCard();
+};
+
 //обработка массива карточек и показ их на старнице
 initialCards.forEach ((item) => {
-  const card = new Card(item);
-  const cardElement = card.generateCard();
-  list.append(cardElement);
-})
+  createCard(item);
+  list.append(createCard(item));
+});
 
 //сабмит новой карточки из пользовательского ввода
 function handleSubmit(event){
@@ -100,10 +104,10 @@ function handleSubmit(event){
     name: inputElementName.value,
     link: inputElementLink.value
   }
-  const card = new Card(cardItem);
-  const cardElement = card.generateCard();
-  list.prepend(cardElement)
+  createCard(cardItem);
+  list.prepend(createCard(cardItem))
   formAddPopup.reset();
+  openValidatorForm.disableButton();
   closePopup(popupAdd);
 };
 
