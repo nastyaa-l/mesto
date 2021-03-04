@@ -2,18 +2,18 @@
 <html lang = "ru">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
+    <link rel="stylesheet" href="../pages/index.css">
     <title>Mesto</title>
   </head>
     <body class="root">
       <div class="page">
         <header class="header section page__header">
-          <img class="header__logo" src="./image/logo.svg" alt="Логотип сайта">
+          <img class="header__logo" src="../image/logo.svg" alt="Логотип сайта">
         </header>
           <main class="content">
             <section class="profile section content__profile">
               <div class="profile__content">
-                <img class="profile__avatar" src="./image/Avatar.png" alt="Аватар профиля">
+                <img class="profile__avatar" src="../image/Avatar.png" alt="Аватар профиля">
                 <div class="profile__info">
                   <h1 class="profile__name">Жак-Ив Кусто</h1>
                   <button class="profile__edit-button" type="button"></button>
@@ -60,7 +60,7 @@
           <div class="popup__overlay popup__overlay_image-popup">
            <div class="popup__content popup__content_image">
             <figure class ="popup__container">
-            <img class="popup__image" alt="изображение места" src="./image/Алтай.jpg">
+            <img class="popup__image" alt="изображение места">
             <figcaption class ="popup__caption"></figcaption>
             <button class="popup__button-close popup__button-close_close-image" type="button"></button>
           </figure>
@@ -70,7 +70,7 @@
       </div>
       <template id="element-template">
         <li class="element">
-          <img class="element__picture" alt ="изображение места" src="./image/Алтай.jpg">
+          <img class="element__picture" alt ="изображение места">
           <button class="element__bin" type="button"></button>
           <div class="element__name-content">
           <h2 class="element__title"></h2>
@@ -78,6 +78,6 @@
         </div>
       </li>
       </template>
-      <script type="module" src="./scripts/script.js"></script>
+      <script type="module" src="./index.js"></script>
     </body>
 </html>

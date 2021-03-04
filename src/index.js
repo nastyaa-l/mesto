@@ -1,7 +1,7 @@
 //импорты
 import {Card} from "../components/Card.js";
 import {FormValidator} from "../components/FormValidator.js";
-import {initialCards} from "./config.js";
+import {initialCards} from "../scripts/config.js";
 
 // переменные - кнопки
 export const openButton = document.querySelector('.profile__edit-button'),
