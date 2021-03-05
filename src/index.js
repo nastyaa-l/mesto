@@ -2,6 +2,7 @@
 import {Card} from "../components/Card.js";
 import {FormValidator} from "../components/FormValidator.js";
 import {initialCards} from "../scripts/config.js";
+import {Section} from "../components/Section.js";
 
 // переменные - кнопки
 export const openButton = document.querySelector('.profile__edit-button'),
@@ -91,21 +92,32 @@ function createCard(item){
   return card.generateCard();
 };
 
-//обработка массива карточек и показ их на старнице
-initialCards.forEach ((item) => {
-  createCard(item);
-  list.append(createCard(item));
-});
+//добавление карточки на страницу
+const cardList = new Section({
+  data: initialCards,
+  renderer : (item) => {
+    createCard(item);
+    cardList.setItem(createCard(item));
+  }
+}, list);
+
+cardList.renderItems();
 
 //сабмит новой карточки из пользовательского ввода
 function handleSubmit(event){
   event.preventDefault();
-  const cardItem = {
-    name: inputElementName.value,
-    link: inputElementLink.value
-  }
-  createCard(cardItem);
-  list.prepend(createCard(cardItem))
+//добавление карточек пользователем
+  const userCardList = new Section({
+    data: [{
+      name: inputElementName.value,
+      link: inputElementLink.value
+    }],
+    renderer: (item) => {
+      createCard(item);
+      userCardList.prependItem(createCard(item));
+    }
+  }, list);
+  userCardList.renderItems();
   formAddPopup.reset();
   openValidatorForm.disableButton();
   closePopup(popupAdd);
