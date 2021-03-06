@@ -3,13 +3,15 @@ import {Card} from "../components/Card.js";
 import {FormValidator} from "../components/FormValidator.js";
 import {initialCards} from "../scripts/config.js";
 import {Section} from "../components/Section.js";
+import {Popup} from "../components/Popup.js";
+import {PopupWithImage} from "../components/PopupWithImage.js";
 
 // переменные - кнопки
 export const openButton = document.querySelector('.profile__edit-button'),
       closeButtonEdit = document.querySelector('.popup__button-close_close-edit'),
       closeButtonAdd = document.querySelector('.popup__button-close_close-add'),
       addButton = document.querySelector('.profile__add-button'),
-      imageCloseButton = document.querySelector('.popup__button-close_close-image'),
+      closeButtonImage = document.querySelector('.popup__button-close_close-image'),
 
 // попапы
       popupAdd = document.querySelector('.popup__overlay_add-popup'),
@@ -54,9 +56,10 @@ inputSub.value = profileSub.textContent;
 // функция открытия попапа
 export function openPopup(popupName){
   popupName.classList.add('popup__overlay_active');
-  document.addEventListener('keydown', closePopupwithEsc)
+//  document.addEventListener('keydown', closePopupwithEsc)
 };
 
+/*
 // функция, меняющая картинку и описание карточки
 export function handleOpenImage(link, name){
   elementPicture.src = link;
@@ -64,6 +67,7 @@ export function handleOpenImage(link, name){
   elementCaption.textContent = name;
   openPopup(popupImage);
 };
+*/
 
 // сабмит профиля
 function submitAddElemnts(event){
@@ -74,23 +78,35 @@ function submitAddElemnts(event){
 };
 
 // закрытие попапа
-function closePopup(popupName) {
+/*function closePopup(popupName) {
   popupName.classList.remove('popup__overlay_active');
   document.removeEventListener('keydown', closePopupwithEsc)
-};
+};*/
 
 // добавление слушателя на эскейп
-function closePopupwithEsc(event) {
+/*function closePopupwithEsc(event) {
     if(event.key === 'Escape'){
-        closePopup(document.querySelector('.popup__overlay_active'))
+      closePopup(document.querySelector('.popup__overlay_active'))
     }
-};
+};*/
 
-//создание карточки с изображением
+// создание карточки с изображением
 function createCard(item){
   const card = new Card(item, '#element-template');
   return card.generateCard();
 };
+
+// закрытие попапа редактирования профиля
+const closeEditPopup = new Popup(popupEdit);
+closeEditPopup.setEventListeners();
+
+// закрытие попапа добавление карточки
+const closeAddPopup = new Popup(popupAdd);
+closeAddPopup.setEventListeners();
+
+// закрытие изображения
+const closeImagePopup = new PopupWithImage(popupImage);
+closeImagePopup.setEventListeners();
 
 //добавление карточки на страницу
 const cardList = new Section({
@@ -132,22 +148,22 @@ const editValidatorForm = new FormValidator(validationObject, formEditPopup);
 editValidatorForm.enableValidation();
 
 // закрытие попапа по клику на оверлэй
-overlayList.forEach( overlayBlock =>{
+/*overlayList.forEach( overlayBlock =>{
   overlayBlock.addEventListener('click', function(evt){
     if (evt.target === evt.currentTarget) {
       closePopup(overlayBlock);
     }
   })
-});
+});*/
 
 // обработчики
 addButton.addEventListener('click', () => openPopup(popupAdd));
-closeButtonAdd.addEventListener('click', () => closePopup(popupAdd));
-closeButtonEdit.addEventListener('click', () => closePopup(popupEdit));
+//closeButtonAdd.addEventListener('click', () => closePopup(popupAdd));
+//closeButtonEdit.addEventListener('click', () => closePopup(popupEdit));
 openButton.addEventListener('click', () => openPopup(popupEdit));
 form.addEventListener('submit', submitAddElemnts);
 formAddPopup.addEventListener('submit', handleSubmit);
-imageCloseButton.addEventListener('click', () => closePopup(popupImage));
+//imageCloseButton.addEventListener('click', () => closePopup(popupImage));
 
 
 

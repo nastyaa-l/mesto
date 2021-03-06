@@ -1,4 +1,5 @@
-import {elementPicture, elementCaption, popupImage, openPopup, handleOpenImage} from "../src/index.js"
+import {PopupWithImage} from "./PopupWithImage.js";
+import {popupImage} from "../src/index.js";
 
 // класс создания карточек
 export class Card {
@@ -43,7 +44,8 @@ export class Card {
       this._deleteCard();
     });
     this._element.querySelector('.element__picture').addEventListener('click', ()=> {
-      handleOpenImage(this._link, this._name);
+      const imagePopup = new PopupWithImage(popupImage);
+      imagePopup.open(this._link, this._name);
     });
   }
 }
