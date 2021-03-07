@@ -54,10 +54,10 @@ inputName.value = profileName.textContent;
 inputSub.value = profileSub.textContent;
 
 // функция открытия попапа
-export function openPopup(popupName){
+/*export function openPopup(popupName){
   popupName.classList.add('popup__overlay_active');
 //  document.addEventListener('keydown', closePopupwithEsc)
-};
+};*/
 
 /*
 // функция, меняющая картинку и описание карточки
@@ -148,19 +148,26 @@ const editValidatorForm = new FormValidator(validationObject, formEditPopup);
 editValidatorForm.enableValidation();
 
 // закрытие попапа по клику на оверлэй
-/*overlayList.forEach( overlayBlock =>{
+overlayList.forEach( overlayBlock =>{
   overlayBlock.addEventListener('click', function(evt){
     if (evt.target === evt.currentTarget) {
-      closePopup(overlayBlock);
+      const overlay = new Popup(overlayBlock);
+      overlay.close();
     }
   })
-});*/
+});
 
 // обработчики
-addButton.addEventListener('click', () => openPopup(popupAdd));
+addButton.addEventListener('click', () => {
+  const openPopup = new Popup(popupAdd);
+  openPopup.open();
+});
 //closeButtonAdd.addEventListener('click', () => closePopup(popupAdd));
 //closeButtonEdit.addEventListener('click', () => closePopup(popupEdit));
-openButton.addEventListener('click', () => openPopup(popupEdit));
+openButton.addEventListener('click', () => {
+  const openPopup = new Popup(popupEdit);
+  openPopup.open();
+});
 form.addEventListener('submit', submitAddElemnts);
 formAddPopup.addEventListener('submit', handleSubmit);
 //imageCloseButton.addEventListener('click', () => closePopup(popupImage));

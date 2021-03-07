@@ -20,6 +20,7 @@ export class Section {
     this._container.append(element);
   }
 
+//вставка элемента вначало контейнера
   prependItem(element){
     this._container.prepend(element);
   }
