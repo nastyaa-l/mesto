@@ -17,8 +17,9 @@ class PopupWithForm extends Popup {
     super.setEventListeners();
   }
 
-// открытие попапа
-  open() {
-    super.open();
+// закрытие попапа
+  close() {
+    super.close();
+
   }
 }

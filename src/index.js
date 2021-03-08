@@ -162,15 +162,12 @@ addButton.addEventListener('click', () => {
   const openPopup = new Popup(popupAdd);
   openPopup.open();
 });
-//closeButtonAdd.addEventListener('click', () => closePopup(popupAdd));
-//closeButtonEdit.addEventListener('click', () => closePopup(popupEdit));
 openButton.addEventListener('click', () => {
   const openPopup = new Popup(popupEdit);
   openPopup.open();
 });
 form.addEventListener('submit', submitAddElemnts);
 formAddPopup.addEventListener('submit', handleSubmit);
-//imageCloseButton.addEventListener('click', () => closePopup(popupImage));
 
 
 
