@@ -1,12 +1,12 @@
 import {PopupWithImage} from "./PopupWithImage.js";
-import {popupImage} from "../src/index.js";
 
 // класс создания карточек
 export class Card {
-  constructor (data, templateSelector){
+  constructor (data, templateSelector, handleCardClick){
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   // метод возвращения разметки карточки
@@ -44,7 +44,7 @@ export class Card {
       this._deleteCard();
     });
     this._element.querySelector('.element__picture').addEventListener('click', ()=> {
-      const imagePopup = new PopupWithImage(popupImage);
+      const imagePopup = new PopupWithImage(this._handleCardClick);
       imagePopup.open(this._link, this._name);
     });
   }
