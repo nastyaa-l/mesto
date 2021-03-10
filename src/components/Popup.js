@@ -5,10 +5,10 @@ export class Popup {
   }
 
 // открытие попапа
-  open(){
+  open(data){
     this._popupSelector.classList.add('popup__overlay_active');
     document.addEventListener('keydown', this._handleEscClose.bind(this))
-  }
+}
 
 // закрытие попапа
   close(){

@@ -1,4 +1,5 @@
 //импорты
+import './index.css';
 import {Card} from "../components/Card.js";
 import {FormValidator} from "../components/FormValidator.js";
 import {initialCards} from "../scripts/config.js";
@@ -11,7 +12,16 @@ import {openButton, addButton, popupAdd, popupEdit, popupImage, formAddPopup, fo
 inputElementLink, inputElementName, profileName, profileSub, overlayList, list, validationObject} from "../utils/constants.js";
 
 
-// инпут соответсувует описанию профиля
+// картинки для вебпака
+const logo = new URL('../image/logo.svg', import.meta.url);
+const avatar = new URL('../image/Avatar.png', import.meta.url);
+
+export const images = [
+  {name: 'logo', image: logo },
+  {name: 'avatar', image: avatar},
+];
+
+// передача значений в форму
 const userInfo = new UserInfo(profileName, profileSub);
 inputName.value = userInfo.getUserInfo().profileName;
 inputSub.value = userInfo.getUserInfo().profileSub;
@@ -90,12 +100,11 @@ overlayList.forEach( overlayBlock =>{
 
 // обработчики
 addButton.addEventListener('click', () => {
-  const openPopup = new Popup(popupAdd);
-  openPopup.open();
+  formAdd.open();
 });
+
 openButton.addEventListener('click', () => {
-  const openPopup = new Popup(popupEdit);
-  openPopup.open();
+  formEdit.open(userInfo.getUserInfo());
 });
 
 

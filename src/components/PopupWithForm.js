@@ -16,7 +16,6 @@ export class PopupWithForm extends Popup {
       this._handleFormSubmit(this._getInputValues());
       this.close();
     });
-
   }
 
   // закрытие попапа и сбрасывание формы
@@ -34,4 +33,16 @@ export class PopupWithForm extends Popup {
     });
     return this._formValues;
   }
+
+  // открытие попапа и добавление имени и описания профиля
+  open(data) {
+    super.open();
+    if (this._popupSelector.querySelector('.popup__content_edit')) {
+			this._inputList = this._form.querySelectorAll('.popup__input');
+			this._inputList.forEach(input => {
+				 input.value = data[input.name]
+			});
+  }
 };
+
+}
