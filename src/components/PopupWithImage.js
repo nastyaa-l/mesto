@@ -9,8 +9,8 @@ export class PopupWithImage extends Popup {
 // открытие изображение, смена картинки и описания карточки
   open(link, name){
     super.open();
-    this._popupSelector.querySelector('.popup__image').src = link;
-    this._popupSelector.querySelector('.popup__image').alt = name;
-    this._popupSelector.querySelector('.popup__caption').textContent = name;
+    this._popupElement.querySelector('.popup__image').src = link;
+    this._popupElement.querySelector('.popup__image').alt = name;
+    this._popupElement.querySelector('.popup__caption').textContent = name;
   }
 }

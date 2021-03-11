@@ -8,6 +8,8 @@ export class FormValidator {
     this._inputElement = data.inputElement;
     this._errorClass = data.errorClass;
     this._formElement = formElement;
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
   }
 
   //показ ошибки инпута
@@ -58,20 +60,16 @@ export class FormValidator {
 
   //отключение кнопки сабмита
   disableButton(){
-    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-    this._toggleButtonState(inputList, buttonElement)
+    this._toggleButtonState(this._inputList, this._buttonElement)
   };
 
   //обработка каждой формы
   _setEventListeners() {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-    this._toggleButtonState(inputList, buttonElement);
-    inputList.forEach((inputElement) =>{
+    this._toggleButtonState(this._inputList, this._buttonElement);
+    this._inputList.forEach((inputElement) =>{
       inputElement.addEventListener('input', () =>{
         this._isValid(inputElement);
-        this._toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState(this._inputList, this._buttonElement);
       })
     })
   }

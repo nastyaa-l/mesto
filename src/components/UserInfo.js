@@ -1,7 +1,7 @@
 export class UserInfo{
-  constructor(profileName, profileSub){
-    this._profileName = profileName;
-    this._profileSub = profileSub;
+  constructor(nameSelector, subSelector){
+    this._profileName = document.querySelector(nameSelector);
+    this._profileSub = document.querySelector(subSelector);
   }
 
 // объект с данными пользователя

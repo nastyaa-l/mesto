@@ -44,8 +44,7 @@ export class Card {
       this._deleteCard();
     });
     this._element.querySelector('.element__picture').addEventListener('click', ()=> {
-      const imagePopup = new PopupWithImage(this._handleCardClick);
-      imagePopup.open(this._link, this._name);
+     this._handleCardClick(this._link, this._name);
     });
   }
 }
