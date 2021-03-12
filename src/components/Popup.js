@@ -24,11 +24,19 @@ export class Popup {
   }
 }
 
+// закрытие по клику на оверлей
+  _handleOverlayClose(event){
+    if(event.target === event.currentTarget){
+      this.close();
+    }
+  }
+
 //добавление слушаетля иконке закрытия попапа
   setEventListeners() {
     this._popupElement.querySelector('.popup__button-close').addEventListener('click', () =>{
       this.close();
     })
+    this._popupElement.addEventListener('click', (event) => this._handleOverlayClose(event));
   }
 
 }

@@ -34,22 +34,17 @@ formEdit.setEventListeners();
 // форма добавления картинки
 const formAdd = new PopupWithForm ('.popup__overlay_add-popup', {
   handleFormSubmit: (formData) => {
-    const userCardList = new Section({
-      data: [{
-        name: inputElementName.value,
-        link: inputElementLink.value
-      }],
-      renderer: (item) => {
-        createCard(item);
-        userCardList.prependItem(createCard(item));
-      }
-    }, list);
-    userCardList.renderItems();
-    openValidatorForm.disableButton();
+      const data = {
+        name: formData['element-name'],
+        link: formData['element-link']
+      };
+      const card = createCard(data);
+      cardList.prependItem(card);
   }
 })
 formAdd.setEventListeners();
 
+// попап с изображением
 const popupWithImage = new PopupWithImage('.popup__overlay_image-popup');
 popupWithImage.setEventListeners();
 
@@ -60,14 +55,6 @@ function createCard(item){
   return card.generateCard();
 };
 
-// закрытие попапа редактирования профиля
-const closeEditPopup = new Popup('.popup__overlay_edit-popup');
-closeEditPopup.setEventListeners();
-
-// закрытие попапа добавление карточки
-const closeAddPopup = new Popup('.popup__overlay_image-popup');
-closeAddPopup.setEventListeners();
-
 // закрытие изображения
 const closeImagePopup = new PopupWithImage('.popup__overlay_image-popup');
 closeImagePopup.setEventListeners();
@@ -76,11 +63,9 @@ closeImagePopup.setEventListeners();
 const cardList = new Section({
   data: initialCards,
   renderer : (item) => {
-    createCard(item);
     cardList.setItem(createCard(item));
   }
 }, list);
-
 cardList.renderItems();
 
 
@@ -92,18 +77,9 @@ openValidatorForm.enableValidation();
 const editValidatorForm = new FormValidator(validationObject, formEditPopup);
 editValidatorForm.enableValidation();
 
-// закрытие попапа по клику на оверлэй
-overlayList.forEach( overlayBlock =>{
-  overlayBlock.addEventListener('click', function(evt){
-    if (evt.target === evt.currentTarget) {
-      const overlay = new Popup(overlayBlock);
-      overlay.close();
-    }
-  })
-});
-
 // обработчики
 addButton.addEventListener('click', () => {
+  openValidatorForm.disableButton();
   formAdd.open();
 });
 
