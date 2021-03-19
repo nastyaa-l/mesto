@@ -4,12 +4,10 @@ import {Card} from "../components/Card.js";
 import {FormValidator} from "../components/FormValidator.js";
 import {initialCards} from "../scripts/config.js";
 import {Section} from "../components/Section.js";
-import {Popup} from "../components/Popup.js";
 import {PopupWithImage} from "../components/PopupWithImage.js";
 import {UserInfo} from "../components/UserInfo.js";
 import {PopupWithForm} from "../components/PopupWithForm.js";
-import {openButton, addButton, formAddPopup, formEditPopup, inputName, inputSub,inputElementLink, inputElementName,
-  profileName, profileSub, overlayList, list, validationObject} from "../utils/constants.js";
+import {openButton, addButton, formAddPopup, formEditPopup, inputName, inputSub,list, validationObject} from "../utils/constants.js";
 
 
 // картинки для вебпака

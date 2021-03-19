@@ -14,15 +14,8 @@ export const openButton = document.querySelector('.profile__edit-button'),
 // инпуты
       inputName = document.querySelector('.popup__input_form_name'),
       inputSub = document.querySelector('.popup__input_form_subscription'),
-      inputElementName = document.querySelector('.popup__input_element_name'),
-      inputElementLink = document.querySelector('.popup__input_element_link'),
-
-// элементы : карточки, профиль
-      profileName = document.querySelector('.profile__name'),
-      profileSub = document.querySelector('.profile__subscription'),
 
 //списки
-      overlayList = Array.from(document.querySelectorAll('.popup__overlay')),
       list = document.querySelector('.elements__items');
 
 //объект с селекторами валидации

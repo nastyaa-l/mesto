@@ -1,0 +1,10 @@
+.profile__avatar-edit{
+  border: none;
+  background-image: url(../../../image/pen.svg);
+  position: absolute;
+  background-color: transparent;
+  width: 26px;
+  height: 26px;
+  margin-left: 47px;
+  transition: opacity, 1s, linear;
+}
