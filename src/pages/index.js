@@ -1,13 +1,14 @@
 //импорты
 import './index.css';
+import {Api} from "../components/Api.js";
 import {Card} from "../components/Card.js";
 import {FormValidator} from "../components/FormValidator.js";
-import {initialCards} from "../scripts/config.js";
 import {Section} from "../components/Section.js";
 import {PopupWithImage} from "../components/PopupWithImage.js";
 import {UserInfo} from "../components/UserInfo.js";
 import {PopupWithForm} from "../components/PopupWithForm.js";
-import {openButton, addButton, formAddPopup, formEditPopup, inputName, inputSub,list, validationObject} from "../utils/constants.js";
+import {openButton, addButton, formAddPopup, formEditPopup, inputName, profileAvatar, profileName, profileSub,
+profileData, inputSub, list, validationObject, initialCards} from "../utils/constants.js";
 
 
 // картинки для вебпака
@@ -26,7 +27,10 @@ inputSub.value = userInfo.getUserInfo().profileSub;
 
 // форма редактирования профиля
 const formEdit = new PopupWithForm ('.popup__overlay_edit-popup', {
-  handleFormSubmit: (formData) => userInfo.setUserInfo(formData)});
+  handleFormSubmit: (formData) => {
+    userInfo.setUserInfo(formData)
+    api.patchDatas(formData);
+  }});
 formEdit.setEventListeners();
 
 // форма добавления картинки
@@ -38,6 +42,7 @@ const formAdd = new PopupWithForm ('.popup__overlay_add-popup', {
       };
       const card = createCard(data);
       cardList.prependItem(card);
+      apiCards.postCards(data);
   }
 })
 formAdd.setEventListeners();
@@ -49,7 +54,9 @@ popupWithImage.setEventListeners();
 // создание карточки с изображением
 function createCard(item){
   const card = new Card(item, '#element-template', (link, name) =>
-  popupWithImage.open(link, name));
+  {
+    popupWithImage.open(link, name);
+  });
   return card.generateCard();
 };
 
@@ -64,7 +71,6 @@ const cardList = new Section({
     cardList.setItem(createCard(item));
   }
 }, list);
-cardList.renderItems();
 
 
 //валидация формы попапа добавления карточки
@@ -74,6 +80,31 @@ openValidatorForm.enableValidation();
 //валидация формы попапа редактирования профиля
 const editValidatorForm = new FormValidator(validationObject, formEditPopup);
 editValidatorForm.enableValidation();
+
+//экземпляр Апи для установки данных профиля
+const api = new Api(profileData);
+api.getDatas()
+  .then(data => {
+    profileSub.textContent = data.about;
+    profileName.textContent = data.name;
+    profileAvatar.src = data.avatar;
+    profileAvatar.alt = data.name;
+  })
+
+//экземпляр апи для обработки карточек
+const apiCards = new Api(initialCards);
+apiCards.getDatas()
+  .then(data => {
+
+    // добавление карточек на страницу
+    const cardList = new Section({
+        data: data,
+        renderer : (item) => {
+          cardList.setItem(createCard(item));
+        }
+      }, list);
+      cardList.renderItems();
+    });
 
 // обработчики
 addButton.addEventListener('click', () => {

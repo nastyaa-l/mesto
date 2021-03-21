@@ -16,7 +16,12 @@ export const openButton = document.querySelector('.profile__edit-button'),
       inputSub = document.querySelector('.popup__input_form_subscription'),
 
 //списки
-      list = document.querySelector('.elements__items');
+      list = document.querySelector('.elements__items'),
+
+// профиль
+      profileName = document.querySelector('.profile__name'),
+      profileAvatar = document.querySelector('.profile__avatar'),
+      profileSub = document.querySelector('.profile__subscription');
 
 //объект с селекторами валидации
 export const validationObject = {
@@ -26,4 +31,23 @@ export const validationObject = {
     inactiveButtonClass: 'popup__submit_disabled',
     inputElement: 'popup__input_active',
     errorClass: 'popup__input-error_active'
-}
+};
+
+// запрос на начальные карточки
+export const initialCards = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-21/cards',
+  headers: {
+    'Content-Type' : 'application/json',
+    authorization: 'dadbc927-3d26-4ae7-ad00-1ca5a4a7f849',
+
+  },
+};
+
+// запрос на данные пользователя
+export const profileData = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-21/users/me ',
+  headers: {
+    'Content-Type' : 'application/json',
+    authorization: 'dadbc927-3d26-4ae7-ad00-1ca5a4a7f849',
+  },
+};
