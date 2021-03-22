@@ -1,10 +1,11 @@
-import {PopupWithImage} from "./PopupWithImage.js";
+import {deleteCard} from "../pages/index.js";
 
 // класс создания карточек
 export class Card {
   constructor (data, templateSelector, handleCardClick){
     this._name = data.name;
     this._link = data.link;
+    this._like = data.likes.length;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
   }
@@ -27,6 +28,8 @@ export class Card {
     this._elementPicture.src = this._link;
     this._elementPicture.alt = this._name;
     this._element.querySelector('.element__title').textContent = this._name;
+    this._elementLike = this._element.querySelector('.element__like-num');
+    this._elementLike.textContent = this._like;
     return this._element;
   }
 
@@ -41,7 +44,7 @@ export class Card {
       event.target.classList.toggle('element__like_black');
     });
     this._element.querySelector('.element__bin').addEventListener('click', () => {
-      this._deleteCard();
+      deleteCard.open();
     });
     this._element.querySelector('.element__picture').addEventListener('click', ()=> {
      this._handleCardClick(this._link, this._name);

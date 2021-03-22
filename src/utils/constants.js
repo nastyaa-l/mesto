@@ -1,6 +1,7 @@
 // переменные - кнопки
 export const openButton = document.querySelector('.profile__edit-button'),
       addButton = document.querySelector('.profile__add-button'),
+      bins = document.querySelectorAll('.element__bin'),
 
 // попапы
       popupAdd = document.querySelector('.popup__overlay_add-popup'),

@@ -2,13 +2,14 @@
 import './index.css';
 import {Api} from "../components/Api.js";
 import {Card} from "../components/Card.js";
+import {Popup} from "../components/Popup.js";
 import {FormValidator} from "../components/FormValidator.js";
 import {Section} from "../components/Section.js";
 import {PopupWithImage} from "../components/PopupWithImage.js";
 import {UserInfo} from "../components/UserInfo.js";
 import {PopupWithForm} from "../components/PopupWithForm.js";
 import {openButton, addButton, formAddPopup, formEditPopup, inputName, profileAvatar, profileName, profileSub,
-profileData, inputSub, list, validationObject, initialCards} from "../utils/constants.js";
+profileData, inputSub, list, validationObject, initialCards, bins} from "../utils/constants.js";
 
 
 // картинки для вебпака
@@ -72,7 +73,6 @@ const cardList = new Section({
   }
 }, list);
 
-
 //валидация формы попапа добавления карточки
 const openValidatorForm = new FormValidator(validationObject, formAddPopup);
 openValidatorForm.enableValidation();
@@ -106,6 +106,10 @@ apiCards.getDatas()
       cardList.renderItems();
     });
 
+// подтверждение удаления карточки изображения
+export const deleteCard = new Popup('.popup__overlay_confirm');
+deleteCard.setEventListeners();
+
 // обработчики
 addButton.addEventListener('click', () => {
   openValidatorForm.disableButton();
@@ -116,7 +120,6 @@ openButton.addEventListener('click', () => {
   formEdit.setFormData(userInfo.getUserInfo());
   formEdit.open();
 });
-
 
 
 
