@@ -10,6 +10,7 @@
   top: 18px;
   opacity: 1;
   transition: opacity, linear;
+  display: none;
 }
 
 .element__bin:focus {

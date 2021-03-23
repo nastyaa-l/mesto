@@ -16,7 +16,7 @@ export class Section {
 
 
 //вставка элемента в контейнер
-  setItem(element){
+  setItem(element) {
     this._container.append(element);
   }
 

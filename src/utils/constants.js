@@ -1,7 +1,7 @@
 // переменные - кнопки
 export const openButton = document.querySelector('.profile__edit-button'),
       addButton = document.querySelector('.profile__add-button'),
-      bins = document.querySelectorAll('.element__bin'),
+      profileButton = document.querySelector('.profile__avatar-edit'),
 
 // попапы
       popupAdd = document.querySelector('.popup__overlay_add-popup'),
@@ -11,6 +11,7 @@ export const openButton = document.querySelector('.profile__edit-button'),
 // формы
       formAddPopup = document.querySelector('.popup__form_add'),
       formEditPopup = document.querySelector('.popup__form_edit'),
+      formUpdatePopup = document.querySelector('.popup__form_update'),
 
 // инпуты
       inputName = document.querySelector('.popup__input_form_name'),
@@ -52,3 +53,19 @@ export const profileData = {
     authorization: 'dadbc927-3d26-4ae7-ad00-1ca5a4a7f849',
   },
 };
+
+export const changeAvatar = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-21/users/me/avatar ',
+  headers: {
+    'Content-Type' : 'application/json',
+    authorization: 'dadbc927-3d26-4ae7-ad00-1ca5a4a7f849',
+  },
+}
+
+export const apiLikes = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-21/cards/likes/ ',
+  headers: {
+    'Content-Type' : 'application/json',
+    authorization: 'dadbc927-3d26-4ae7-ad00-1ca5a4a7f849',
+  },
+}
