@@ -8,8 +8,8 @@ import {Section} from "../components/Section.js";
 import {PopupWithImage} from "../components/PopupWithImage.js";
 import {UserInfo} from "../components/UserInfo.js";
 import {PopupWithForm} from "../components/PopupWithForm.js";
-import {openButton, addButton, formAddPopup, formEditPopup, inputName, profileAvatar, profileName, profileSub,
-profileData, inputSub, list, validationObject, initialCards, formUpdatePopup, profileButton, changeAvatar, apiLikes} from "../utils/constants.js";
+import {openButton, addButton, formAddPopup, formEditPopup, inputName, profileAvatar, profileName, profileSub, popupSubmitAdd, popupSubmitEdit,
+popupSubmitUpd, profileData, inputSub, list, validationObject, initialCards, formUpdatePopup, profileButton, changeAvatar, apiLikes} from "../utils/constants.js";
 
 
 // картинки для вебпака
@@ -26,14 +26,25 @@ const userInfo = new UserInfo('.profile__name', '.profile__subscription');
 inputName.value = userInfo.getUserInfo().profileName;
 inputSub.value = userInfo.getUserInfo().profileSub;
 
+//функция включения загрузки на кнопкахсохранения
+function loading (isLoading, button, originalText) {
+	if(isLoading) {
+		button.textContent = "Сохранение...";
+	} else {
+		button.textContent = originalText;
+	}
+}
+
 // форма редактирования профиля
 const formEdit = new PopupWithForm ('.popup__overlay_edit-popup', {
   handleFormSubmit: (formData) => {
+    loading(true, popupSubmitEdit, 'Сохранить')
     userInfo.setUserInfo(formData)
-    formEdit.renderLoading(true);
-    api.patchDatas(formData);
+    api.patchDatas(formData)
+    .then(()=> loading(false, popupSubmitEdit, 'Сохранить'))
   }});
 formEdit.setEventListeners();
+
 
 // форма добавления картинки
 const formAdd = new PopupWithForm ('.popup__overlay_add-popup', {
@@ -43,7 +54,9 @@ const formAdd = new PopupWithForm ('.popup__overlay_add-popup', {
         link: formData['element-link'],
         likes: [],
       };
+    loading(true, popupSubmitAdd, 'Создать');
     apiCards.postCards(data)
+    .then(() => loading(false, popupSubmitAdd, 'Создать'))
       const card = createCard(data, true);
       cardList.prependItem(card);
   }
@@ -53,8 +66,10 @@ formAdd.setEventListeners();
 // форма редактирования аватара
 const formUpdate = new PopupWithForm ('.popup__overlay_update', {
   handleFormSubmit: (formData) => {
+    loading(true, popupSubmitUpd, 'Да')
     profileAvatar.src = formData.profileUrl;
-    apiUpdate.patchAvatar(profileAvatar.src);
+    apiUpdate.patchAvatar(profileAvatar.src)
+    .then(() => loading(false, popupSubmitUpd, 'Да'))
   }
 })
 formUpdate.setEventListeners();
@@ -101,7 +116,6 @@ updateValidationForm.enableValidation();
 export const api = new Api(profileData);
 api.getDatas()
   .then(data => {
-    console.log(data._id)
     profileSub.textContent = data.about;
     profileName.textContent = data.name;
     profileAvatar.src = data.avatar;

@@ -1,6 +1,3 @@
-import {deleteCard, api} from "../pages/index.js";
-
-
 // класс создания карточек
 export class Card {
   constructor (data, templateSelector, isBin, api, handleCardClick, popup){
@@ -41,7 +38,7 @@ export class Card {
 
   // включение корзин для карточек своего профиля
   _getBins(elem){
-    api.getDatas()
+    this._api.getDatas()
     .then (data => {
       if (this._isBin || data._id === this._data.owner._id){
         elem.querySelector('.element__bin').classList.add('element__bin_active');
@@ -66,21 +63,24 @@ export class Card {
   //добавление лайков карточке
   _likeCard(event) {
     const isLiked = event.target.classList.contains('element__like_black');
-    console.log(this._api)
     if (isLiked){
-      this._api.deleteDatas(this._data._id)
-      .then(() => event.target.classList.remove('element__like_black'))
-      .then(() => this.like -= 1)
+      event.target.classList.remove('element__like_black')
+      this._api.deleteLikes(this._data._id)
+      .then((res) => {
+        this._element.querySelector('.element__like-num').textContent = res.likes.length;
+      })
       .catch ((err) => {
         console.log ('ошибка при удалении', err)
       })
     }
 
     else {
-      event.target.classList.add('element__like_black')
-      this._api.putDatas(this._data._id);
-      console.log(this._data._id)
-
+      event.target.classList.add('element__like_black');
+      this._api.putDatas(this._data._id)
+      .then ((res) => {
+        this._element.querySelector('.element__like-num').textContent = res.likes.length;
+      })
+      .catch ((err) => console.log('ошибка при постановке лайка', err))
     }
   }
 

@@ -50,7 +50,6 @@
 @import url(../blocks/popup/__input/_active/popup__input_active.css);
 @import url(../blocks/popup/__input-error/_active/popup__input-error_active.css);
 @import url(../blocks/popup/__submit/popup__submit.css);
-@import url(../blocks/popup/__submit/_sending/popup__submit_sending.css);
 @import url(../blocks/popup/__submit/_confirm/popup__submit_confirm.css);
 @import url(../blocks/popup/__submit/_disabled/popup__submit_disabled.css);
 @import url(../blocks/popup/__subscription/popup__subscription.css);

@@ -2,6 +2,9 @@
 export const openButton = document.querySelector('.profile__edit-button'),
       addButton = document.querySelector('.profile__add-button'),
       profileButton = document.querySelector('.profile__avatar-edit'),
+      popupSubmitEdit = document.querySelector('.popup__submit_form-edit'),
+      popupSubmitAdd = document.querySelector('.popup__submit_form-add'),
+      popupSubmitUpd = document.querySelector('.popup__submit_update'),
 
 // попапы
       popupAdd = document.querySelector('.popup__overlay_add-popup'),
