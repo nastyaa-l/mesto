@@ -30,6 +30,7 @@ inputSub.value = userInfo.getUserInfo().profileSub;
 const formEdit = new PopupWithForm ('.popup__overlay_edit-popup', {
   handleFormSubmit: (formData) => {
     userInfo.setUserInfo(formData)
+    formEdit.renderLoading(true);
     api.patchDatas(formData);
   }});
 formEdit.setEventListeners();
@@ -42,9 +43,9 @@ const formAdd = new PopupWithForm ('.popup__overlay_add-popup', {
         link: formData['element-link'],
         likes: [],
       };
+    apiCards.postCards(data)
       const card = createCard(data, true);
       cardList.prependItem(card);
-      apiCards.postCards(data);
   }
 })
 formAdd.setEventListeners();
@@ -64,10 +65,11 @@ popupWithImage.setEventListeners();
 
 // создание карточки с изображением
 function createCard(item, isBin){
-  const card = new Card(item, '#element-template', isBin, apiLiked, (link, name) =>
+  const card = new Card(item, '#element-template', isBin, apiCards,  (link, name) =>
   {
     popupWithImage.open(link, name);
-  });
+  },
+  popupConfirm);
   return card.generateCard();
 };
 
@@ -96,9 +98,10 @@ const updateValidationForm = new FormValidator(validationObject, formUpdatePopup
 updateValidationForm.enableValidation();
 
 //экземпляр Апи для установки данных профиля
-const api = new Api(profileData);
+export const api = new Api(profileData);
 api.getDatas()
   .then(data => {
+    console.log(data._id)
     profileSub.textContent = data.about;
     profileName.textContent = data.name;
     profileAvatar.src = data.avatar;
@@ -109,7 +112,6 @@ api.getDatas()
 const apiCards = new Api(initialCards);
 apiCards.getDatas()
   .then(data => {
-
     // добавление карточек на страницу
     const cardList = new Section({
         data: data,
@@ -118,7 +120,7 @@ apiCards.getDatas()
         }
       }, list);
       cardList.renderItems();
-    });
+    })
 
 // экземпляр апи для обновления изображения
 const apiUpdate = new Api(changeAvatar);
@@ -127,6 +129,8 @@ const apiLiked = new Api(apiLikes);
 // подтверждение удаления карточки изображения
 export const deleteCard = new Popup('.popup__overlay_confirm');
 deleteCard.setEventListeners();
+
+const popupConfirm = new Popup('.popup__overlay_confirm', () =>{});
 
 // обработчики
 addButton.addEventListener('click', () => {

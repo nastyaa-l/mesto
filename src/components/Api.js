@@ -59,7 +59,7 @@ export class Api {
 
   // удаление
   deleteDatas(id){
-    return fetch(this._url + id, {
+    return fetch(this._url + '/' + id, {
       method: 'DELETE',
       headers: this._headers,
     })
@@ -74,7 +74,7 @@ export class Api {
 
   // постановка лайка
   putDatas(id){
-    return fetch(this._url + id, {
+    return fetch(this._url + '/likes/' + id, {
       method: 'PUT',
       headers: this._headers,
     })
