@@ -40,6 +40,7 @@ export class FormValidator {
 
   //проверка валидности сразу всей формы(всех инпутов)
   _hasInValid (inputList){
+
     return inputList.some((inputElement) => //если есть хоть один false, возвращает true
     {
       return !inputElement.validity.valid;

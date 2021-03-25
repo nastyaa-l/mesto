@@ -56,9 +56,11 @@ const formAdd = new PopupWithForm ('.popup__overlay_add-popup', {
       };
     loading(true, popupSubmitAdd, 'Создать');
     apiCards.postCards(data)
-    .then(() => loading(false, popupSubmitAdd, 'Создать'))
-      const card = createCard(data, true);
+    .then((res) => {
+      loading(false, popupSubmitAdd, 'Создать')
+      const card = createCard(res, true);
       cardList.prependItem(card);
+  })
   }
 })
 formAdd.setEventListeners();
@@ -80,7 +82,7 @@ popupWithImage.setEventListeners();
 
 // создание карточки с изображением
 function createCard(item, isBin){
-  const card = new Card(item, '#element-template', isBin, apiCards,  (link, name) =>
+  const card = new Card(item, '#element-template', isBin, apiCards, api,  (link, name) =>
   {
     popupWithImage.open(link, name);
   },
@@ -141,9 +143,6 @@ const apiUpdate = new Api(changeAvatar);
 const apiLiked = new Api(apiLikes);
 
 // подтверждение удаления карточки изображения
-export const deleteCard = new Popup('.popup__overlay_confirm');
-deleteCard.setEventListeners();
-
 const popupConfirm = new Popup('.popup__overlay_confirm', () =>{});
 
 // обработчики
