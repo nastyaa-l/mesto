@@ -1,6 +1,8 @@
 // класс создания карточек
 export class Card {
-  constructor (data, templateSelector, isBin, api, profileDatas, handleCardClick, popup){
+  constructor (data, templateSelector, isBin, api, handleCardClick, popup/* { openConfirm = () => {},
+  closeConfirm = () => {},
+  setConfirmSubmit = () => {}}*/){
     this._name = data.name;
     this._link = data.link;
     this._like = data.likes.length;
@@ -10,7 +12,11 @@ export class Card {
     this._data = data;
     this._api = api;
     this._popup = popup;
-    this._profileDatas = profileDatas;
+    this._button = this._popup._popupElement.querySelector('.popup__submit_confirm');
+    this._handleRemove = this._deleteCard.bind(this);
+   // this._openConfirm = openConfirm;
+  //  this._closeConfirm = closeConfirm;
+//this._setConfirmSubmit = setConfirmSubmit;
   }
 
   // метод возвращения разметки карточки
@@ -40,7 +46,7 @@ export class Card {
 
   // включение корзин для карточек своего профиля
   _getBins(elem){
-    this._profileDatas.getDatas()
+    this._api.getDatas()
     .then (data => {
         if (this._isBin || data._id === this._data.owner._id){
         elem.querySelector('.element__bin').classList.add('element__bin_active');
@@ -51,7 +57,7 @@ export class Card {
 
   //включение цвета сердечек
   _getLikes(elem){
-    this._profileDatas.getDatas()
+    this._api.getDatas()
     .then (data => {
       this._data.likes.forEach((item) => {
         if (data._id === item._id){
@@ -63,18 +69,17 @@ export class Card {
   }
 
   //удаление карточек
-  _deleteCard() {
+  _deleteCard (event){
+    //this._button.removeEventListener('click', this._handleRemove);
     this._api.deleteDatas(this._data._id)
-    .then(() => {
+    .then(() =>{
       this._element.remove();
-    })
-    .then(()=>{
       this._popup.close();
-    })
+     })
     .catch( err => {
       console.log('Ошибка при удалении', err)
     })
-  };
+  }
 
   //добавление лайков карточке
   _likeCard(event) {
@@ -104,14 +109,14 @@ export class Card {
   _setEvenetListeners() {
     this._element.querySelector('.element__like').addEventListener('click', (event) => {
       this._likeCard(event);
-     // event.target.classList.toggle('element__like_black');
     });
-    this._element.querySelector('.element__bin').addEventListener('click', () => {
+    this._element.querySelector('.element__bin').addEventListener('click', (event) => {
       this._popup.open();
-      this._popup._popupElement.querySelector('.popup__submit_confirm').addEventListener('click' , () =>{
-        this._deleteCard();
-      })
-    });
+      this._popup.setEventListeners();
+      this._button.addEventListener('click', this._handleRemove);
+      //console.log(true);
+
+      });
     this._element.querySelector('.element__picture').addEventListener('click', ()=> {
       this._handleCardClick(this._link, this._name);
     });

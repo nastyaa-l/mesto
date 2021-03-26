@@ -38,37 +38,12 @@ export const validationObject = {
     errorClass: 'popup__input-error_active'
 };
 
-// запрос на начальные карточки
-export const initialCards = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-21/cards',
+// класс апи начальных данных
+ export const apiData = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-21/',
   headers: {
     'Content-Type' : 'application/json',
     authorization: 'dadbc927-3d26-4ae7-ad00-1ca5a4a7f849',
 
   },
-};
-
-// запрос на данные пользователя
-export const profileData = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-21/users/me ',
-  headers: {
-    'Content-Type' : 'application/json',
-    authorization: 'dadbc927-3d26-4ae7-ad00-1ca5a4a7f849',
-  },
-};
-
-export const changeAvatar = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-21/users/me/avatar ',
-  headers: {
-    'Content-Type' : 'application/json',
-    authorization: 'dadbc927-3d26-4ae7-ad00-1ca5a4a7f849',
-  },
-}
-
-export const apiLikes = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-21/cards/likes/ ',
-  headers: {
-    'Content-Type' : 'application/json',
-    authorization: 'dadbc927-3d26-4ae7-ad00-1ca5a4a7f849',
-  },
-}
+ };

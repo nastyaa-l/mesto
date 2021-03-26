@@ -1,15 +1,15 @@
 //класс, отвечающий за отрисовку элементов на странице
 export class Section {
-  constructor ({data, renderer}, containerSelector){
-    this._renderedItems = data;
+  constructor ({renderer}, containerSelector){
+    //this._renderedItems = data;
     this._renderer = renderer;
     this._container = containerSelector;
   }
 
 
 //перебор массив данных
-  renderItems() {
-    this._renderedItems.forEach((item) =>{
+  renderItems(data) {
+    data.forEach((item) =>{
       this._renderer(item);
     })
   };

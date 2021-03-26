@@ -39,34 +39,33 @@ export class FormValidator {
   }
 
   //проверка валидности сразу всей формы(всех инпутов)
-  _hasInValid (inputList){
-
-    return inputList.some((inputElement) => //если есть хоть один false, возвращает true
+  _hasInValid (){
+    return this._inputList.some((inputElement) => //если есть хоть один false, возвращает true
     {
       return !inputElement.validity.valid;
     }
   )}
 
   //блокировка кнопки сабмита
-  _toggleButtonState (inputList, buttonElement){
-    if(this._hasInValid(inputList)){
-      buttonElement.classList.add(this._inactiveButtonClass);
-      buttonElement.setAttribute('disabled', true);
+  _toggleButtonState (){
+    if(this._hasInValid()){
+      this._buttonElement.classList.add(this._inactiveButtonClass);
+      this._buttonElement.setAttribute('disabled', true);
     }
     else {
-      buttonElement.classList.remove(this._inactiveButtonClass);
-      buttonElement.removeAttribute('disabled', true);
+      this._buttonElement.classList.remove(this._inactiveButtonClass);
+      this._buttonElement.removeAttribute('disabled', true);
     }
   }
 
   //отключение кнопки сабмита
   disableButton(){
-    this._toggleButtonState(this._inputList, this._buttonElement)
+    this._toggleButtonState()
   };
 
   //обработка каждой формы
   _setEventListeners() {
-    this._toggleButtonState(this._inputList, this._buttonElement);
+    this._toggleButtonState();
     this._inputList.forEach((inputElement) =>{
       inputElement.addEventListener('input', () =>{
         this._isValid(inputElement);

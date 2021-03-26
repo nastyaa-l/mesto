@@ -8,8 +8,9 @@ import {Section} from "../components/Section.js";
 import {PopupWithImage} from "../components/PopupWithImage.js";
 import {UserInfo} from "../components/UserInfo.js";
 import {PopupWithForm} from "../components/PopupWithForm.js";
+import {PopupForSubmit} from "../components/PopupForSubmit.js";
 import {openButton, addButton, formAddPopup, formEditPopup, inputName, profileAvatar, profileName, profileSub, popupSubmitAdd, popupSubmitEdit,
-popupSubmitUpd, profileData, inputSub, list, validationObject, initialCards, formUpdatePopup, profileButton, changeAvatar, apiLikes} from "../utils/constants.js";
+popupSubmitUpd, inputSub, apiData, list, validationObject, formUpdatePopup, profileButton} from "../utils/constants.js";
 
 
 // картинки для вебпака
@@ -23,8 +24,7 @@ export const images = [
 
 // передача значений в форму
 const userInfo = new UserInfo('.profile__name', '.profile__subscription');
-inputName.value = userInfo.getUserInfo().profileName;
-inputSub.value = userInfo.getUserInfo().profileSub;
+
 
 //функция включения загрузки на кнопкахсохранения
 function loading (isLoading, button, originalText) {
@@ -55,7 +55,7 @@ const formAdd = new PopupWithForm ('.popup__overlay_add-popup', {
         likes: [],
       };
     loading(true, popupSubmitAdd, 'Создать');
-    apiCards.postCards(data)
+    api.postCards(data)
     .then((res) => {
       loading(false, popupSubmitAdd, 'Создать')
       const card = createCard(res, true);
@@ -70,7 +70,7 @@ const formUpdate = new PopupWithForm ('.popup__overlay_update', {
   handleFormSubmit: (formData) => {
     loading(true, popupSubmitUpd, 'Да')
     profileAvatar.src = formData.profileUrl;
-    apiUpdate.patchAvatar(profileAvatar.src)
+    api.patchAvatar(profileAvatar.src)
     .then(() => loading(false, popupSubmitUpd, 'Да'))
   }
 })
@@ -82,11 +82,17 @@ popupWithImage.setEventListeners();
 
 // создание карточки с изображением
 function createCard(item, isBin){
-  const card = new Card(item, '#element-template', isBin, apiCards, api,  (link, name) =>
+  const card = new Card(item, '#element-template', isBin, api,  (link, name) =>
   {
     popupWithImage.open(link, name);
   },
-  popupConfirm);
+  popupConfirm,
+  /*{ //confirm actions
+    openConfirm: popupConfirm.open.bind(popupConfirm),
+    closeConfirm: popupConfirm.close.bind(popupConfirm),
+    setConfirmSubmit: popupConfirm.updSetEventListeners.bind(popupConfirm)
+  },*/
+  )
   return card.generateCard();
 };
 
@@ -96,7 +102,6 @@ closeImagePopup.setEventListeners();
 
 //добавление карточки на страницу
 const cardList = new Section({
-  data: initialCards,
   renderer : (item) => {
     cardList.setItem(createCard(item, false));
   }
@@ -115,7 +120,7 @@ const updateValidationForm = new FormValidator(validationObject, formUpdatePopup
 updateValidationForm.enableValidation();
 
 //экземпляр Апи для установки данных профиля
-export const api = new Api(profileData);
+export const api = new Api(apiData);
 api.getDatas()
   .then(data => {
     profileSub.textContent = data.about;
@@ -125,25 +130,14 @@ api.getDatas()
   })
 
 //экземпляр апи для обработки карточек
-const apiCards = new Api(initialCards);
-apiCards.getDatas()
+api.getCards()
   .then(data => {
-    // добавление карточек на страницу
-    const cardList = new Section({
-        data: data,
-        renderer : (item) => {
-          cardList.setItem(createCard(item, false));
-        }
-      }, list);
-      cardList.renderItems();
+      cardList.renderItems(data);
     })
 
-// экземпляр апи для обновления изображения
-const apiUpdate = new Api(changeAvatar);
-const apiLiked = new Api(apiLikes);
-
 // подтверждение удаления карточки изображения
-const popupConfirm = new Popup('.popup__overlay_confirm', () =>{});
+//const popupConfirm = new PopupWithForm('.popup__overlay_confirm', () =>{});
+const popupConfirm = new PopupForSubmit('.popup__overlay_confirm')
 
 // обработчики
 addButton.addEventListener('click', () => {
