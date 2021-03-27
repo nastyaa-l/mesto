@@ -87,11 +87,6 @@ function createCard(item, isBin){
     popupWithImage.open(link, name);
   },
   popupConfirm,
-  /*{ //confirm actions
-    openConfirm: popupConfirm.open.bind(popupConfirm),
-    closeConfirm: popupConfirm.close.bind(popupConfirm),
-    setConfirmSubmit: popupConfirm.updSetEventListeners.bind(popupConfirm)
-  },*/
   )
   return card.generateCard();
 };
@@ -136,8 +131,8 @@ api.getCards()
     })
 
 // подтверждение удаления карточки изображения
-//const popupConfirm = new PopupWithForm('.popup__overlay_confirm', () =>{});
-const popupConfirm = new PopupForSubmit('.popup__overlay_confirm')
+const popupConfirm = new PopupWithForm('.popup__overlay_confirm', () =>{});
+//const popupConfirm = new PopupForSubmit('.popup__overlay_confirm')
 
 // обработчики
 addButton.addEventListener('click', () => {

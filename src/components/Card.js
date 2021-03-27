@@ -1,8 +1,6 @@
 // класс создания карточек
 export class Card {
-  constructor (data, templateSelector, isBin, api, handleCardClick, popup/* { openConfirm = () => {},
-  closeConfirm = () => {},
-  setConfirmSubmit = () => {}}*/){
+  constructor (data, templateSelector, isBin, api, handleCardClick, popup){
     this._name = data.name;
     this._link = data.link;
     this._like = data.likes.length;
@@ -14,9 +12,6 @@ export class Card {
     this._popup = popup;
     this._button = this._popup._popupElement.querySelector('.popup__submit_confirm');
     this._handleRemove = this._deleteCard.bind(this);
-   // this._openConfirm = openConfirm;
-  //  this._closeConfirm = closeConfirm;
-//this._setConfirmSubmit = setConfirmSubmit;
   }
 
   // метод возвращения разметки карточки
@@ -70,7 +65,7 @@ export class Card {
 
   //удаление карточек
   _deleteCard (event){
-    //this._button.removeEventListener('click', this._handleRemove);
+    this._button.removeEventListener('click', this._handleRemove);
     this._api.deleteDatas(this._data._id)
     .then(() =>{
       this._element.remove();
