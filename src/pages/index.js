@@ -131,8 +131,13 @@ api.getCards()
     })
 
 // подтверждение удаления карточки изображения
-const popupConfirm = new PopupWithForm('.popup__overlay_confirm', () =>{});
-//const popupConfirm = new PopupForSubmit('.popup__overlay_confirm')
+//const popupConfirm = new PopupWithForm('.popup__overlay_confirm', () =>{});
+const popupConfirm = new PopupForSubmit('.popup__overlay_confirm', (data, elem) =>{
+  api.deleteDatas(data._id, elem)
+  .then (() => {
+    popupConfirm.close()})
+})
+popupConfirm.setEventListeners();
 
 // обработчики
 addButton.addEventListener('click', () => {

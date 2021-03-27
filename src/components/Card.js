@@ -57,6 +57,7 @@ export class Card {
       this._data.likes.forEach((item) => {
         if (data._id === item._id){
           elem.querySelector('.element__like').classList.add('element__like_black');
+
         }
       })
     })
@@ -106,12 +107,9 @@ export class Card {
       this._likeCard(event);
     });
     this._element.querySelector('.element__bin').addEventListener('click', (event) => {
-      this._popup.open();
-      this._popup.setEventListeners();
-      this._button.addEventListener('click', this._handleRemove);
-      //console.log(true);
+      this._popup.open(this._data, event);
 
-      });
+      })
     this._element.querySelector('.element__picture').addEventListener('click', ()=> {
       this._handleCardClick(this._link, this._name);
     });

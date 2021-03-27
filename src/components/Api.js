@@ -59,12 +59,18 @@ export class Api {
   }
 
   // удаление
-  deleteDatas(id){
+  deleteDatas(id, elem){
     return fetch(this._url + 'cards/' + id, {
       method: 'DELETE',
       headers: this._headers,
     })
-    .then ( this._checkResponse)
+    .then ((res) => {
+      if(res.ok){
+        elem.closest('.element').remove();
+        return res.json();
+     }
+     return Promise.reject(new Error ('Произошла ошибка со статус-кодом ' + res.status))
+    })
     .catch(err => Promise.reject(err));
   }
 
