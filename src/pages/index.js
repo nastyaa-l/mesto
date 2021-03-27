@@ -12,6 +12,9 @@ import {PopupForSubmit} from "../components/PopupForSubmit.js";
 import {openButton, addButton, formAddPopup, formEditPopup, inputName, profileAvatar, profileName, profileSub, popupSubmitAdd, popupSubmitEdit,
 popupSubmitUpd, inputSub, apiData, list, validationObject, formUpdatePopup, profileButton} from "../utils/constants.js";
 
+// переменная id пользователя
+let userId;
+
 
 // картинки для вебпака
 const logo = new URL('../image/logo.svg', import.meta.url);
@@ -23,7 +26,7 @@ export const images = [
 ];
 
 // передача значений в форму
-const userInfo = new UserInfo('.profile__name', '.profile__subscription');
+const userInfo = new UserInfo('.profile__name', '.profile__subscription', '.profile__avatar');
 
 
 //функция включения загрузки на кнопкахсохранения
@@ -39,9 +42,11 @@ function loading (isLoading, button, originalText) {
 const formEdit = new PopupWithForm ('.popup__overlay_edit-popup', {
   handleFormSubmit: (formData) => {
     loading(true, popupSubmitEdit, 'Сохранить')
-    userInfo.setUserInfo(formData)
     api.patchDatas(formData)
-    .then(()=> loading(false, popupSubmitEdit, 'Сохранить'))
+    .then(()=> {
+      userInfo.setUserInfo(formData.profileName, formData.profileSub)
+      loading(false, popupSubmitEdit, 'Сохранить')})
+    .catch(err => Promise.reject(err));
   }});
 formEdit.setEventListeners();
 
@@ -61,6 +66,8 @@ const formAdd = new PopupWithForm ('.popup__overlay_add-popup', {
       const card = createCard(res, true);
       cardList.prependItem(card);
   })
+    .catch(err => Promise.reject(err));
+
   }
 })
 formAdd.setEventListeners();
@@ -69,9 +76,12 @@ formAdd.setEventListeners();
 const formUpdate = new PopupWithForm ('.popup__overlay_update', {
   handleFormSubmit: (formData) => {
     loading(true, popupSubmitUpd, 'Да')
-    profileAvatar.src = formData.profileUrl;
-    api.patchAvatar(profileAvatar.src)
-    .then(() => loading(false, popupSubmitUpd, 'Да'))
+    api.patchAvatar(formData.profileUrl)
+    .then(() => {
+      userInfo.setAvatar(formData.profileUrl);
+      loading(false, popupSubmitUpd, 'Да')})
+    .catch(err => Promise.reject(err));
+
   }
 })
 formUpdate.setEventListeners();
@@ -80,13 +90,23 @@ formUpdate.setEventListeners();
 const popupWithImage = new PopupWithImage('.popup__overlay_image-popup');
 popupWithImage.setEventListeners();
 
+// попап подтверждение удаления карточки изображения
+const popupConfirm = new PopupForSubmit('.popup__overlay_confirm', (data, elem) =>{
+  api.deleteDatas(data._id, elem)
+  .then (() => {
+    popupConfirm.close()})
+    .catch(err => Promise.reject(err));
+
+})
+popupConfirm.setEventListeners();
+
 // создание карточки с изображением
 function createCard(item, isBin){
   const card = new Card(item, '#element-template', isBin, api,  (link, name) =>
   {
     popupWithImage.open(link, name);
   },
-  popupConfirm,
+  popupConfirm, userId
   )
   return card.generateCard();
 };
@@ -114,30 +134,19 @@ editValidatorForm.enableValidation();
 const updateValidationForm = new FormValidator(validationObject, formUpdatePopup);
 updateValidationForm.enableValidation();
 
-//экземпляр Апи для установки данных профиля
-export const api = new Api(apiData);
-api.getDatas()
-  .then(data => {
-    profileSub.textContent = data.about;
-    profileName.textContent = data.name;
-    profileAvatar.src = data.avatar;
-    profileAvatar.alt = data.name;
-  })
+const api = new Api(apiData);
 
-//экземпляр апи для обработки карточек
-api.getCards()
-  .then(data => {
-      cardList.renderItems(data);
-    })
-
-// подтверждение удаления карточки изображения
-//const popupConfirm = new PopupWithForm('.popup__overlay_confirm', () =>{});
-const popupConfirm = new PopupForSubmit('.popup__overlay_confirm', (data, elem) =>{
-  api.deleteDatas(data._id, elem)
-  .then (() => {
-    popupConfirm.close()})
+// промисы для запрсов
+const promises = [api.getDatas(), api.getCards()]
+Promise.all(promises)
+.then((results) => {
+  const [profileResult, cardsResult] = results;
+  userInfo.setUserInfo(profileResult.name, profileResult.about, profileResult.avatar);
+  userInfo.setAvatar(profileResult.avatar);
+  userId = profileResult._id;
+  cardList.renderItems(cardsResult);
 })
-popupConfirm.setEventListeners();
+.catch(err => Promise.reject(err));
 
 // обработчики
 addButton.addEventListener('click', () => {

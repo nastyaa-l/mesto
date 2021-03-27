@@ -2,9 +2,9 @@ import {Popup} from "./Popup.js";
 
 // класс попап формы
 export class PopupForSubmit extends Popup {
-  constructor(popupSelector, FormSubmit){
+  constructor(popupSelector, formSubmit){
     super(popupSelector);
-    this._FormSubmit = FormSubmit;
+    this._formSubmit = formSubmit;
     this._button = this._popupElement.querySelector('.popup__submit_confirm');
     this._form = this._popupElement.querySelector('.popup__form');
     this._handleSubmit = this._handleFormSubmit.bind(this);
@@ -18,10 +18,10 @@ export class PopupForSubmit extends Popup {
 
   _handleFormSubmit(event){
     event.preventDefault();
-    this._FormSubmit(this._data, this._elem);
+    this._formSubmit(this._data, this._elem);
   }
 
-  // закрытие попапа и сбрасывание формы
+  // закрытие попапа
   close() {
     super.close();
   }

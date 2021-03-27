@@ -72,6 +72,12 @@ export class FormValidator {
         this._toggleButtonState(this._inputList, this._buttonElement);
       })
     })
+    this._formElement.addEventListener('reset', () => {
+      this._inputList.forEach((inputElement) => {
+          this._hideInputMessage(inputElement)
+          this._toggleButtonState(this._inputList, this._buttonElement);
+      })
+  });
   }
 
   //включение валидации для всех форм

@@ -1,6 +1,6 @@
 // класс создания карточек
 export class Card {
-  constructor (data, templateSelector, isBin, api, handleCardClick, popup){
+  constructor (data, templateSelector, isBin, api, handleCardClick, popup, userId){
     this._name = data.name;
     this._link = data.link;
     this._like = data.likes.length;
@@ -10,8 +10,7 @@ export class Card {
     this._data = data;
     this._api = api;
     this._popup = popup;
-    this._button = this._popup._popupElement.querySelector('.popup__submit_confirm');
-    this._handleRemove = this._deleteCard.bind(this);
+    this._userId = userId;
   }
 
   // метод возвращения разметки карточки
@@ -41,27 +40,18 @@ export class Card {
 
   // включение корзин для карточек своего профиля
   _getBins(elem){
-    this._api.getDatas()
-    .then (data => {
-        if (this._isBin || data._id === this._data.owner._id){
-        elem.querySelector('.element__bin').classList.add('element__bin_active');
+      if (this._isBin || this._userId === this._data.owner._id){
+      elem.querySelector('.element__bin').classList.add('element__bin_active');
       }
-    })
-    .catch (err => console.log ('Ошибка в получении данных', err))
   }
 
   //включение цвета сердечек
   _getLikes(elem){
-    this._api.getDatas()
-    .then (data => {
       this._data.likes.forEach((item) => {
-        if (data._id === item._id){
+        if (this._userId === item._id){
           elem.querySelector('.element__like').classList.add('element__like_black');
-
         }
       })
-    })
-    .catch (err => console.log ('Ошибка в получении данных лайка', err))
   }
 
   //удаление карточек

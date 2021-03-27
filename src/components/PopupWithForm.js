@@ -6,6 +6,7 @@ export class PopupWithForm extends Popup {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._popupElement.querySelector('.popup__form');
+    this._inputList = this._form.querySelectorAll('.popup__input');
   }
 
   // добавление слушателей
@@ -26,7 +27,6 @@ export class PopupWithForm extends Popup {
 
   // сбор данных всех полей формы
   _getInputValues(){
-    this._inputList = this._form.querySelectorAll('.popup__input');
     this._formValues = {};
     this._inputList.forEach(input => {
       this._formValues[input.name] = input.value;
@@ -36,7 +36,6 @@ export class PopupWithForm extends Popup {
 
   //добавление имени и описания профиля
   setFormData(data) {
-    this._inputList = this._form.querySelectorAll('.popup__input');
     this._inputList.forEach(input => input.value = data[input.name] || '' );
   }
 }

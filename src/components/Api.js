@@ -90,7 +90,6 @@ export class Api {
       headers: this._headers,
     })
     .then ( this._checkResponse)
-    .catch(err => Promise.reject(err));
   }
 
    // обновление аватара
