@@ -46,7 +46,7 @@ const formEdit = new PopupWithForm ('.popup__overlay_edit-popup', {
     .then(()=> {
       userInfo.setUserInfo(formData.profileName, formData.profileSub)
       loading(false, popupSubmitEdit, 'Сохранить')})
-    .catch(err => Promise.reject(err));
+    .catch(err => console.log(err));
   }});
 formEdit.setEventListeners();
 
@@ -66,7 +66,7 @@ const formAdd = new PopupWithForm ('.popup__overlay_add-popup', {
       const card = createCard(res, true);
       cardList.prependItem(card);
   })
-    .catch(err => Promise.reject(err));
+    .catch(err => console.log(err));
 
   }
 })
@@ -80,7 +80,7 @@ const formUpdate = new PopupWithForm ('.popup__overlay_update', {
     .then(() => {
       userInfo.setAvatar(formData.profileUrl);
       loading(false, popupSubmitUpd, 'Да')})
-    .catch(err => Promise.reject(err));
+    .catch(err => console.log(err));
 
   }
 })
@@ -95,7 +95,7 @@ const popupConfirm = new PopupForSubmit('.popup__overlay_confirm', (data, elem) 
   api.deleteDatas(data._id, elem)
   .then (() => {
     popupConfirm.close()})
-    .catch(err => Promise.reject(err));
+    .catch(err => console.log(err));
 
 })
 popupConfirm.setEventListeners();
@@ -146,7 +146,7 @@ Promise.all(promises)
   userId = profileResult._id;
   cardList.renderItems(cardsResult);
 })
-.catch(err => Promise.reject(err));
+.catch(err => console.log(err));
 
 // обработчики
 addButton.addEventListener('click', () => {

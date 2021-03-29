@@ -17,8 +17,7 @@ export class Api {
     return fetch(this._url + 'users/me', {
       headers: this._headers,
     })
-    .then ( this._checkResponse)
-    .catch(err => Promise.reject(err));
+    .then ( this._checkResponse);
   }
 
   // получение карточек с сервера
@@ -26,8 +25,7 @@ export class Api {
     return fetch(this._url + 'cards', {
       headers: this._headers,
     })
-    .then ( this._checkResponse)
-    .catch(err => Promise.reject(err));
+    .then ( this._checkResponse);
   }
 
   // обновление данных пользователя на сервере
@@ -40,8 +38,7 @@ export class Api {
         about: data.profileSub,
       })
     })
-    .then ( this._checkResponse)
-    .catch(err => Promise.reject(err));
+    .then ( this._checkResponse);
   }
 
   // добавление новой карточки на сервер
@@ -54,8 +51,7 @@ export class Api {
         link: data.link,
       })
     })
-    .then ( this._checkResponse)
-    .catch(err => Promise.reject(err));
+    .then ( this._checkResponse);
   }
 
   // удаление
@@ -71,7 +67,6 @@ export class Api {
      }
      return Promise.reject(new Error ('Произошла ошибка со статус-кодом ' + res.status))
     })
-    .catch(err => Promise.reject(err));
   }
 
   deleteLikes(id) {
@@ -79,8 +74,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers,
     })
-    .then ( this._checkResponse)
-    .catch(err => Promise.reject(err));
+    .then ( this._checkResponse);
   }
 
   // постановка лайка
@@ -89,7 +83,7 @@ export class Api {
       method: 'PUT',
       headers: this._headers,
     })
-    .then ( this._checkResponse)
+    .then ( this._checkResponse);
   }
 
    // обновление аватара
@@ -101,7 +95,6 @@ export class Api {
         avatar: avatar,
       })
     })
-    .then ( this._checkResponse)
-    .catch(err => Promise.reject(err));
+    .then ( this._checkResponse);
   }
 }
